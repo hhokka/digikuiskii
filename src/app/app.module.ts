@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
 import { MenuPage } from '../pages/menu/menu';
 import { ContactPage } from '../pages/contact/contact';
+import { DishdetailPage } from '../pages/dishdetail/dishdetail';
 import { baseURL } from '../shared/baseurl';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -21,7 +22,8 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     HomePage,
       AboutPage,
       MenuPage,
-      ContactPage
+      ContactPage,
+      DishdetailPage
       
   ],
   imports: [
@@ -35,7 +37,8 @@ import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-htt
     HomePage,
       AboutPage,
       MenuPage,
-      ContactPage
+      ContactPage,
+      DishdetailPage
   ],
   providers: [
     StatusBar,
