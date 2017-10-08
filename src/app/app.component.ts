@@ -17,7 +17,7 @@ import { GpsPage } from '../pages/gps/gps';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = ContactPage;
 
   pages: Array<{title: string, icon: string, component: any}>;
 
@@ -26,9 +26,9 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Digikuiskii', icon: 'home', component: ContactPage},
       { title: 'Map', icon: 'map', component: HomePage },
-        { title: 'Location', icon: 'compass', component: GpsPage},
-      { title: 'Contact', icon: 'mail', component: ContactPage}    ];
+        { title: 'Location', icon: 'compass', component: GpsPage}    ];
 
   }
 

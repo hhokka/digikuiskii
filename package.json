@@ -34,6 +34,7 @@
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-email": "^1.2.6",
+        "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-googlemaps": "^2.0.11",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.2",
@@ -62,7 +63,8 @@
                 "API_KEY_FOR_ANDROID": "AIzaSyBUJDl0C7KrcKXDfoGXBJcOsjIW1RgXh-M"
             },
             "cordova-plugin-camera": {},
-            "cordova-plugin-email": {}
+            "cordova-plugin-email": {},
+            "cordova-plugin-geolocation": {}
         },
         "platforms": [
             "android"
