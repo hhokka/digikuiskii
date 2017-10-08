@@ -3,10 +3,22 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Location</ion-title>
   </ion-navbar>
 </ion-header>
 
+<ion-content>
+<ion-card>
+  Ion Card
+</ion-card>
+</ion-content>
+
+<ion-content>
+  <div #map id="map"></div> 
+</ion-content>
+
+
+<!-- 
 <ion-content>
 <ion-card *ngIf="dish">
   <img src="{{BaseURL + dish.image}}"/>
@@ -70,4 +82,4 @@
   <h2>Error</h2>
   <h4>{{leaderErrMess}}</h4>
 </div>
-</ion-content>
+</ion-content> -->

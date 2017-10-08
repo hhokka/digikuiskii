@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Location</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+<ion-card *ngIf="gps">
+  <ion-card-content>
+    <ion-card-title>
+        Latitude: 
+    </ion-card-title>
+    {{latitude}}
+  </ion-card-content>
+</ion-card>
+
+
+
+<ion-card *ngIf="gps">
+  <ion-card-content>
+      <ion-card-title>
+        Longitude: 
+    </ion-card-title>
+    {{longitude}}
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="gps">
+  <ion-card-content>
+      <ion-card-title>
+        Speed: 
+    </ion-card-title>
+    {{speed}}
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="gps">
+  <ion-card-content>
+      <ion-card-title>
+        Timestamp: 
+    </ion-card-title>
+    {{timestamp}}
+  </ion-card-content>
+</ion-card>
+</ion-content>
