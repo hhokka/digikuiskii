@@ -25,7 +25,15 @@ import { RegisterPage } from '../pages/register/register';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { GeolocationProvider } from '../providers/geolocation/geolocation';
+import { Firebase } from '@ionic-native/firebase';
 
+export const firebaseConfig = {
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  storageBucket: "",
+  messagingSenderId: ""
+};
 
 @NgModule({
   declarations: [
@@ -71,8 +79,10 @@ import { GeolocationProvider } from '../providers/geolocation/geolocation';
     EmailComposer,
     SocialSharing,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Firebase
 
   ]
 })
+
 export class AppModule { }

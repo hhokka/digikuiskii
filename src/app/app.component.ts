@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-/*import { AboutPage } from '../pages/about/about';
-import { MenuPage } from '../pages/menu/menu';*/
+import { AboutPage } from '../pages/about/about';
+/*import { MenuPage } from '../pages/menu/menu';*/
 import { ContactPage } from '../pages/contact/contact';
 import { GpsPage } from '../pages/gps/gps';
-
-
+import { Firebase } from '@ionic-native/firebase';
+import firebase from 'firebase';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,12 +23,20 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    firebase.initializeApp({
+  apiKey: "AIzaSyBqB9en9SLmoOrUKKlhTvRTw6kyLAkJKBM",
+  authDomain: "smartlab-digikuiskii.firebaseapp.com",
+  databaseURL: "https://smartlab-digikuiskii.firebaseio.com",
+  storageBucket: "smartlab-digikuiskii.appspot.com",
+  messagingSenderId: "937628060376"
+});
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Digikuiskii', icon: 'home', component: ContactPage},
       { title: 'Map', icon: 'map', component: HomePage },
-        { title: 'Location', icon: 'compass', component: GpsPage}    ];
+        { title: 'Location', icon: 'compass', component: GpsPage},
+       { title: 'Firebase', icon: 'star', component: AboutPage}    ];
 
   }
 

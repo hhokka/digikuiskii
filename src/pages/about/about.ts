@@ -6,6 +6,9 @@ import { Promotion } from '../../shared/promotion';
 import { PromotionProvider } from '../../providers/promotion/promotion';
 import { Leader } from '../../shared/leader';
 import { LeaderProvider } from '../../providers/leader/leader';
+import { IonicPage, NavParams } from 'ionic-angular';
+import { EmailComposer } from '@ionic-native/email-composer';
+import * as firebase from 'firebase';
 /**
  * Generated class for the AboutPage page.
  *
@@ -27,11 +30,17 @@ export class AboutPage implements OnInit {
   promoErrMess: string;
   leaderErrMess: string;
   history: History;
+  myPerson = {};
+
   constructor(public navCtrl: NavController,
 
     private promotionservice: PromotionProvider,
     private leaderservice: LeaderProvider,
-    @Inject('BaseURL') private BaseURL) { }
+    @Inject('BaseURL') private BaseURL) {
+
+  }
+
+
 
   ngOnInit() {
 
@@ -46,5 +55,32 @@ export class AboutPage implements OnInit {
       errmess => this.leaderErrMess = <any>errmess);
 
   }
+  createPerson(firstName: string, lastName: string): void {
+    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    personRef.set({
+      firstName,
+      lastName
+    })
+  }
+
+  updatePerson(firstName: string, lastName: string): void {
+    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    personRef.update({
+      firstName,
+      lastName
+    })
+  }
+
+  deletePerson(): void {
+    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    personRef.remove()
+  }
+  ionViewDidLoad() {
+    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    personRef.on('value', personSnapshot => {
+      this.myPerson = personSnapshot.val();
+    });
+  }
+
 
 }
