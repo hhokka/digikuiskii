@@ -28,18 +28,21 @@
     </ion-item>
   </ion-list>
 
-  <button ion-button block (click)="createPerson(firstName, lastName)">
-    Luo käyttäjä
+  <button ion-button (click)="createPerson(firstName, lastName)">
+    <ion-icon name="add"></ion-icon>
+     Luo käyttäjä
   </button>
 
  
 
-  <button ion-button block (click)="updatePerson(firstName, lastName)">
-    Päivtä käyttäjän tiedot
+  <button ion-button icon left (click)="updatePerson(firstName, lastName)">
+    <ion-icon name="refresh"></ion-icon>
+     Päivtä käyttäjän tiedot
   </button>
 
-  <button ion-button block (click)="deletePerson()">
-    Poista käyttäjä
+  <button ion-button (click)="deletePerson()">
+    <ion-icon name="delete"></ion-icon>
+     Poista käyttäjä
   </button>
 
   <p *ngIf="myPerson">

@@ -10,6 +10,8 @@ import { ContactPage } from '../pages/contact/contact';
 import { GpsPage } from '../pages/gps/gps';
 import { Firebase } from '@ionic-native/firebase';
 import firebase from 'firebase';
+import { FIREBASE_CREDENTIALS } from '../shared/credentials';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -23,13 +25,7 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    firebase.initializeApp({
-  apiKey: "AIzaSyBqB9en9SLmoOrUKKlhTvRTw6kyLAkJKBM",
-  authDomain: "smartlab-digikuiskii.firebaseapp.com",
-  databaseURL: "https://smartlab-digikuiskii.firebaseio.com",
-  storageBucket: "smartlab-digikuiskii.appspot.com",
-  messagingSenderId: "937628060376"
-});
+    firebase.initializeApp({ FIREBASE_CREDENTIALS });
 
     // used for an example of ngFor and navigation
     this.pages = [

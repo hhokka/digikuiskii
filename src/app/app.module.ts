@@ -20,12 +20,15 @@ import { HistoryProvider } from '../providers/history/history';
 import { GpsProvider } from '../providers/gps/gps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { Camera } from '@ionic-native/camera';
 import { RegisterPage } from '../pages/register/register';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { GeolocationProvider } from '../providers/geolocation/geolocation';
 import { Firebase } from '@ionic-native/firebase';
+import { AuthProvider } from '../providers/auth/auth';
+import { EventProvider } from '../providers/event/event';
+import { ProfileProvider } from '../providers/profile/profile';
+import { Camera } from '@ionic-native/camera';
 
 export const firebaseConfig = {
   apiKey: "",
@@ -80,7 +83,10 @@ export const firebaseConfig = {
     SocialSharing,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Firebase
+    Firebase,
+    AuthProvider,
+    EventProvider,
+    ProfileProvider
 
   ]
 })
