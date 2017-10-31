@@ -9,6 +9,8 @@ import { LeaderProvider } from '../../providers/leader/leader';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { EmailComposer } from '@ionic-native/email-composer';
 import * as firebase from 'firebase';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 /**
  * Generated class for the AboutPage page.
  *
