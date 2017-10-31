@@ -79,7 +79,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     Firebase,
     AuthProvider,
     EventProvider,
-    ProfileProvider
+    ProfileProvider,
+    AndroidPermissions
 
   ]
 })

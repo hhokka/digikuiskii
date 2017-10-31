@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 /**
  * Generated class for the ContactPage page.
@@ -16,12 +17,18 @@ import { EmailComposer } from '@ionic-native/email-composer';
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer, private androidPermissions: AndroidPermissions) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ContactPage');
-  }
+    /* this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
+      success => console.log('Permission granted'),
+      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
+    );
+    
+    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
+   */}
 
   sendEmail() {
 
