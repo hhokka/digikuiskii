@@ -1,14 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  IonicPage, 
-  Loading,
-  LoadingController, 
-  NavController,
-  AlertController } from 'ionic-angular';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { EmailValidator } from '../../validators/email';
-import { AuthProvider } from '../../providers/auth/auth';
-import { HomePage } from '../home/home';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -16,9 +8,7 @@ import { HomePage } from '../home/home';
  * Ionic pages and navigation.
  */
 
-@IonicPage({
-  name: 'login'
-})
+@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
