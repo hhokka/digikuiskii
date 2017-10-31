@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+/* import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
 export class EmailValidator {
@@ -68,4 +68,4 @@ export class EmailValidator {
   goToResetPassword(): void { 
     this.navCtrl.push('ResetPasswordPage'); 
   }
-}
+} */
