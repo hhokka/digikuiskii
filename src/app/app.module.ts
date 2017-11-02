@@ -25,11 +25,14 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { GeolocationProvider } from '../providers/geolocation/geolocation';
 import { Firebase } from '@ionic-native/firebase';
-import { AuthProvider } from '../providers/auth/auth';
+import { AuthProvider} from '../providers/auth/auth'
 import { EventProvider } from '../providers/event/event';
 import { ProfileProvider } from '../providers/profile/profile';
 import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    AngularFireDatabaseModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,7 +85,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
     AuthProvider,
     EventProvider,
     ProfileProvider,
-    AndroidPermissions
+    AndroidPermissions,
+    AngularFireAuth
 
   ]
 })

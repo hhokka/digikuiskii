@@ -1,50 +1,31 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { EmailComposer } from '@ionic-native/email-composer';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
-
-/**
- * Generated class for the ContactPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { NavController } from 'ionic-angular';
+ 
 @Component({
   selector: 'page-contact',
-  templateUrl: 'contact.html',
+  templateUrl: 'contact.html'
 })
 export class ContactPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private emailComposer: EmailComposer, private androidPermissions: AndroidPermissions) {
+  loginForm: FormGroup;
+  email: AbstractControl;
+  password: AbstractControl;
+  error: any;
+ 
+  constructor(public navCtrl: NavController, private fb: FormBuilder) {
+    this.loginForm = this.fb.group({  
+            'email': ['', Validators.compose([Validators.required, Validators.pattern(/[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)])],
+            'password': ['', Validators.compose([Validators.required, Validators.minLength(1)])]
+        });
+  
+        this.email = this.loginForm.controls['email'];     
+        this.password = this.loginForm.controls['password'];     
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactPage');
-    /* this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
-      success => console.log('Permission granted'),
-      err => this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.CAMERA)
-    );
-    
-    this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.CAMERA, this.androidPermissions.PERMISSION.GET_ACCOUNTS]);
-   */}
-
-  sendEmail() {
-
-    let email = {
-      to: 'max@mustermann.de',
-      cc: 'erika@mustermann.de',
-      bcc: ['john@doe.com', 'jane@doe.com'],
-      attachments: [
-        'file://img/logo.png',
-        'res://icon.png',
-        'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-        'file://README.pdf'
-      ],
-      subject: 'Cordova Icons',
-      body: 'How are you? Nice greetings from Leipzig',
-      isHtml: true
-    };
-  }
+ 
+  login(): void { 
+        if(this.loginForm.valid) {
+          console.log(this.email.value, this.password.value);
+          alert('Implement authentication');
+        }
+    }
 }
