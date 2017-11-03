@@ -20,12 +20,11 @@ import { HistoryProvider } from '../providers/history/history';
 import { GpsProvider } from '../providers/gps/gps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { RegisterPage } from '../pages/register/register';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { GeolocationProvider } from '../providers/geolocation/geolocation';
 import { Firebase } from '@ionic-native/firebase';
-import { AuthProvider} from '../providers/auth/auth'
+import { LoginPage } from '../pages/login/login';
 import { EventProvider } from '../providers/event/event';
 import { ProfileProvider } from '../providers/profile/profile';
 import { Camera } from '@ionic-native/camera';
@@ -33,7 +32,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
-
+import { AuthData } from '../providers/auth/auth';
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +42,7 @@ import { AngularFireModule } from 'angularfire2';
     ContactPage,
     DishdetailPage,
     GpsPage,
-    RegisterPage
+    LoginPage
 
   ],
   imports: [
@@ -62,7 +61,7 @@ import { AngularFireModule } from 'angularfire2';
     ContactPage,
     DishdetailPage,
     GpsPage,
-    RegisterPage
+    LoginPage
   ],
   providers: [
     StatusBar,
@@ -82,11 +81,11 @@ import { AngularFireModule } from 'angularfire2';
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Firebase,
-    AuthProvider,
     EventProvider,
     ProfileProvider,
     AndroidPermissions,
-    AngularFireAuth
+    AngularFireAuth,
+    AuthData
 
   ]
 })

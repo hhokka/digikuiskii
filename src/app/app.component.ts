@@ -8,6 +8,7 @@ import { AboutPage } from '../pages/about/about';
 /*import { MenuPage } from '../pages/menu/menu';*/
 import { ContactPage } from '../pages/contact/contact';
 import { GpsPage } from '../pages/gps/gps';
+import { LoginPage } from '../pages/login/login';
 import { Firebase } from '@ionic-native/firebase';
 import firebase from 'firebase';
 import { FIREBASE_CREDENTIALS } from '../shared/credentials';
@@ -19,7 +20,7 @@ import { FIREBASE_CREDENTIALS } from '../shared/credentials';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ContactPage;
+  rootPage: any;
 
   pages: Array<{title: string, icon: string, component: any}>;
 
@@ -32,15 +33,26 @@ export class MyApp {
     storageBucket: "smartlab-digikuiskii.appspot.com",
     messagingSenderId: "937628060376"
     });
+    
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Digikuiskii', icon: 'home', component: ContactPage},
       { title: 'Map', icon: 'map', component: HomePage },
         { title: 'Location', icon: 'compass', component: GpsPage},
-       { title: 'Firebase', icon: 'star', component: AboutPage}    ];
+       { title: 'Firebase', icon: 'star', component: AboutPage},
+      {title: 'Login', icon: 'login', component: LoginPage}    ];
 
-  }
+       const unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        if (!user) {
+          this.rootPage = LoginPage;
+          unsubscribe();
+        } else { 
+          this.rootPage = HomePage;
+          unsubscribe();
+        }
+      });
+      }
 
   initializeApp() {
     this.platform.ready().then(() => {

@@ -6,6 +6,7 @@ import { Promotion } from '../../shared/promotion';
 import { PromotionProvider } from '../../providers/promotion/promotion';
 import { Leader } from '../../shared/leader';
 import { LeaderProvider } from '../../providers/leader/leader';
+import { AuthData } from '../../providers/auth/auth';
 import { Gps } from '../../shared/gps';
 import { GpsProvider } from '../../providers/gps/gps';
 import { ViewChild, ElementRef } from '@angular/core';
