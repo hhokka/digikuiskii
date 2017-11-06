@@ -5,10 +5,10 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AboutPage } from '../pages/about/about';
-import { MenuPage } from '../pages/menu/menu';
+
 import { ContactPage } from '../pages/contact/contact';
 import { GpsPage } from '../pages/gps/gps';
-import { DishdetailPage } from '../pages/dishdetail/dishdetail';
+
 import { baseURL } from '../shared/baseurl';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -38,9 +38,9 @@ import { AuthData } from '../providers/auth/auth';
     MyApp,
     HomePage,
     AboutPage,
-    MenuPage,
+
     ContactPage,
-    DishdetailPage,
+   
     GpsPage,
     LoginPage
 
@@ -57,9 +57,9 @@ import { AuthData } from '../providers/auth/auth';
     MyApp,
     HomePage,
     AboutPage,
-    MenuPage,
+
     ContactPage,
-    DishdetailPage,
+    
     GpsPage,
     LoginPage
   ],
