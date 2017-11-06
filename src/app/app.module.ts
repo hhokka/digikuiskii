@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { MapPage } from '../pages/map/map';
-import { AboutPage } from '../pages/about/about';
+import { Db_manipulatePage } from '../pages/db_manipulate/db_manipulate';
 
 import { FrontPage } from '../pages/front/front';
 import { GpsPage } from '../pages/gps/gps';
@@ -37,7 +37,7 @@ import { AuthData } from '../providers/auth/auth';
   declarations: [
     MyApp,
     MapPage,
-    AboutPage,
+    Db_manipulatePage,
 
     FrontPage,
    
@@ -56,7 +56,7 @@ import { AuthData } from '../providers/auth/auth';
   entryComponents: [
     MyApp,
     MapPage,
-    AboutPage,
+    Db_manipulatePage,
 
     FrontPage,
     
