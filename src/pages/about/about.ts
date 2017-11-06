@@ -58,7 +58,7 @@ export class AboutPage implements OnInit {
 
   }
   createPerson(firstName: string, lastName: string): void {
-    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
     personRef.set({
       firstName,
       lastName
@@ -66,7 +66,7 @@ export class AboutPage implements OnInit {
   }
 
   updatePerson(firstName: string, lastName: string): void {
-    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
     personRef.update({
       firstName,
       lastName
@@ -74,11 +74,11 @@ export class AboutPage implements OnInit {
   }
 
   deletePerson(): void {
-    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
     personRef.remove()
   }
   ionViewDidLoad() {
-    const personRef: firebase.database.Reference = firebase.database().ref(`/person1/`);
+    const personRef: firebase.database.Reference = firebase.database().ref(`Data`);
     personRef.on('value', personSnapshot => {
       this.myPerson = personSnapshot.val();
     });

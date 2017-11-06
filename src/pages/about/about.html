@@ -18,35 +18,30 @@
 
   <ion-list>
     <ion-item>
-      <ion-label fixed>Etunimi</ion-label>
+      <ion-label fixed>Insert Data</ion-label>
       <ion-input type="text" [(ngModel)]="firstName"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label fixed>Sukunimi</ion-label>
-      <ion-input type="text" [(ngModel)]="lastName"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <button ion-button (click)="createPerson(firstName, lastName)">
+  <button ion-button (click)="createPerson(firstName, null)">
     <ion-icon name="add"></ion-icon>
-     Luo käyttäjä
+     Upload To Firebase
   </button>
+  </ion-list>
 
  
 
-  <button ion-button icon left (click)="updatePerson(firstName, lastName)">
+  <button ion-button icon left (click)="updatePerson(firstName, null)">
     <ion-icon name="refresh"></ion-icon>
-     Päivtä käyttäjän tiedot
+     Refresh Data
   </button>
 
   <button ion-button (click)="deletePerson()">
     <ion-icon name="delete"></ion-icon>
-     Poista käyttäjä
+     Delete Data
   </button>
 
   <p *ngIf="myPerson">
-  Käyttäjän nimi on {{ myPerson.firstName }} {{ myPerson.lastName }}
+  Data On Firebase: {{ myPerson.firstName }} {{ myPerson.lastName }}
 </p>
 
 </ion-content>
