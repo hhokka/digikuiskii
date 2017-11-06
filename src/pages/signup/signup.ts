@@ -7,7 +7,7 @@ import { IonicPage,
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
-import { HomePage } from '../home/home';
+import { MapPage } from '../map/map';
 
 @IonicPage({
   name: 'signup'
@@ -41,7 +41,7 @@ export class SignupPage {
           this.signupForm.value.password)
         .then(() => {
           this.loading.dismiss().then( () => {
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(MapPage);
           });
         }, (error) => {
           this.loading.dismiss().then( () => {

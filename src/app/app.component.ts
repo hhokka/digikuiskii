@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import { MapPage } from '../pages/map/map';
 import { AboutPage } from '../pages/about/about';
 /*import { MenuPage } from '../pages/menu/menu';*/
 import { ContactPage } from '../pages/contact/contact';
@@ -38,7 +38,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Digikuiskii', icon: 'home', component: ContactPage},
-      { title: 'Map', icon: 'map', component: HomePage },
+      { title: 'Map', icon: 'map', component: MapPage },
         { title: 'Location', icon: 'compass', component: GpsPage},
        { title: 'Firebase', icon: 'star', component: AboutPage},
       {title: 'Login', icon: 'login', component: LoginPage}    ];
@@ -48,7 +48,7 @@ export class MyApp {
           this.rootPage = LoginPage;
           unsubscribe();
         } else { 
-          this.rootPage = HomePage;
+          this.rootPage = MapPage;
           unsubscribe();
         }
       });

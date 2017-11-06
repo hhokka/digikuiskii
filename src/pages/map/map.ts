@@ -15,17 +15,12 @@ import { Geolocation } from '@ionic-native/geolocation';
 declare var google;
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-map',
+  templateUrl: 'map.html'
 })
-export class HomePage implements OnInit {
+export class MapPage implements OnInit {
 
-  dish: Dish;
-  promotion: Promotion;
-  leader: Leader;
-  dishErrMess: string;
-  promoErrMess: string;
-  leaderErrMess: string;
+  
   gps: Gps;
 
   
@@ -34,9 +29,7 @@ export class HomePage implements OnInit {
 
 
   constructor(public navCtrl: NavController,
-    private dishservice: DishProvider,
-    private promotionservice: PromotionProvider,
-    private leaderservice: LeaderProvider,
+    
     private gpsservice: GpsProvider,
     public geolocation: Geolocation,
     @Inject('BaseURL') private BaseURL) { }
@@ -60,22 +53,13 @@ export class HomePage implements OnInit {
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
  
     }, (err) => {
-      console.log(err);
+      console.log("map loading, error", err);
     });
  
   }
 
   ngOnInit() {
-    this.dishservice.getFeaturedDish()
-      .subscribe(dish => this.dish = dish,
-      errmess => this.dishErrMess = <any>errmess);
-    this.promotionservice.getFeaturedPromotion()
-      .subscribe(promotion => this.promotion = promotion,
-      errmess => this.promoErrMess = <any>errmess);
-    this.leaderservice.getFeaturedLeader()
-      .subscribe(leader => this.leader = leader,
-      errmess => this.leaderErrMess = <any>errmess);
-
+    
   }
 
 }
