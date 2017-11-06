@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MapPage } from '../pages/map/map';
 import { AboutPage } from '../pages/about/about';
 /*import { MenuPage } from '../pages/menu/menu';*/
-import { ContactPage } from '../pages/contact/contact';
+import { FrontPage } from '../pages/front/front';
 import { GpsPage } from '../pages/gps/gps';
 import { LoginPage } from '../pages/login/login';
 import { Firebase } from '@ionic-native/firebase';
@@ -37,7 +37,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Digikuiskii', icon: 'home', component: ContactPage},
+      { title: 'Digikuiskii', icon: 'home', component: FrontPage},
       { title: 'Map', icon: 'map', component: MapPage },
         { title: 'Location', icon: 'compass', component: GpsPage},
        { title: 'Firebase', icon: 'star', component: AboutPage},

@@ -6,7 +6,7 @@ import { MyApp } from './app.component';
 import { MapPage } from '../pages/map/map';
 import { AboutPage } from '../pages/about/about';
 
-import { ContactPage } from '../pages/contact/contact';
+import { FrontPage } from '../pages/front/front';
 import { GpsPage } from '../pages/gps/gps';
 
 import { baseURL } from '../shared/baseurl';
@@ -39,7 +39,7 @@ import { AuthData } from '../providers/auth/auth';
     MapPage,
     AboutPage,
 
-    ContactPage,
+    FrontPage,
    
     GpsPage,
     LoginPage
@@ -58,7 +58,7 @@ import { AuthData } from '../providers/auth/auth';
     MapPage,
     AboutPage,
 
-    ContactPage,
+    FrontPage,
     
     GpsPage,
     LoginPage
