@@ -16,32 +16,34 @@
 </ion-header>
 <ion-content>
 
-  <ion-list>
+  <ion-list class="front">
     <ion-item>
-      <ion-label fixed>Insert Data</ion-label>
+      <ion-label class="insert" fixed>Insert Data</ion-label>
       <ion-input type="text" [(ngModel)]="firstName"></ion-input>
     </ion-item>
 
-  <button ion-button (click)="createPerson(firstName, null)">
-    <ion-icon name="add"></ion-icon>
+  <button ion-button icon-start (click)="createPerson(firstName, null)">
+    <ion-icon name="cloud-upload"></ion-icon>
      Upload To Firebase
   </button>
-  </ion-list>
+
 
  
 
-  <button ion-button icon left (click)="updatePerson(firstName, null)">
+  <button ion-button icon-start (click)="updatePerson(firstName, null)">
     <ion-icon name="refresh"></ion-icon>
      Refresh Data
   </button>
 
-  <button ion-button (click)="deletePerson()">
-    <ion-icon name="delete"></ion-icon>
+  <button ion-button icon-start (click)="deletePerson()">
+    <ion-icon name="remove-circle"></ion-icon>
      Delete Data
   </button>
 
-  <p *ngIf="myPerson">
+  <p *ngIf="myPerson" icon-start>
+    <ion-icon name="cloud-done"></ion-icon>
   Data On Firebase: {{ myPerson.firstName }} {{ myPerson.lastName }}
 </p>
+</ion-list>
 
 </ion-content>

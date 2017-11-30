@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { Db_manipulatePage } from './db_manipulate';
+import { DbManipulatePage } from './dbmanipulate';
 
 @NgModule({
   declarations: [
-    Db_manipulatePage,
+    DbManipulatePage,
   ],
   imports: [
-    IonicPageModule.forChild(Db_manipulatePage),
+    IonicPageModule.forChild(DbManipulatePage),
   ],
 })
 export class Db_manipulatePageModule {}

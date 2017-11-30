@@ -19,11 +19,11 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
  */
 
 @Component({
-  selector: 'page-db_manipulate',
-  templateUrl: 'db_manipulate.html',
+  selector: 'page-dbmanipulate',
+  templateUrl: 'dbmanipulate.html',
 })
 
-export class Db_manipulatePage implements OnInit {
+export class DbManipulatePage implements OnInit {
 
   promotion: Promotion;
   leader: Leader;

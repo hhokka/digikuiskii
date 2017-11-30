@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { MapPage } from '../pages/map/map';
-import { Db_manipulatePage } from '../pages/db_manipulate/db_manipulate';
+import { DbManipulatePage } from '../pages/dbmanipulate/dbmanipulate';
 /*import { MenuPage } from '../pages/menu/menu';*/
 import { FrontPage } from '../pages/front/front';
 import { GpsPage } from '../pages/gps/gps';
@@ -40,7 +40,8 @@ export class MyApp {
       { title: 'Digikuiskii', icon: 'home', component: FrontPage},
       { title: 'Map', icon: 'map', component: MapPage },
         { title: 'Location', icon: 'compass', component: GpsPage},
-       { title: 'Firebase', icon: 'cloud-upload', component: Db_manipulatePage}   ];
+       { title: 'Firebase', icon: 'cloud-upload', component: DbManipulatePage},
+       { title: 'Login', icon: 'key', component: LoginPage}   ];
 
        const unsubscribe = firebase.auth().onAuthStateChanged( user => {
         if (!user) {
