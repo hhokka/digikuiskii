@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { MapPage } from '../map/map';
+import { LoginPage } from '../login/login';
 
 @IonicPage({
   name: 'signup'
@@ -41,7 +42,8 @@ export class SignupPage {
           this.signupForm.value.password)
         .then(() => {
           this.loading.dismiss().then( () => {
-            this.navCtrl.setRoot(MapPage);
+            this.navCtrl.setRoot(LoginPage);
+            this.authProvider.sendConfirmationEmail();
           });
         }, (error) => {
           this.loading.dismiss().then( () => {
@@ -60,5 +62,6 @@ export class SignupPage {
         this.loading = this.loadingCtrl.create();
         this.loading.present();
       }
+      
     }
 }

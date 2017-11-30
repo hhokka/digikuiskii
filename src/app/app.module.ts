@@ -59,7 +59,7 @@ import { AuthData } from '../providers/auth/auth';
     DbManipulatePage,
 
     FrontPage,
-    
+   
     GpsPage,
     LoginPage
   ],
