@@ -5,12 +5,13 @@ import firebase from 'firebase';
 export class AuthData {
   constructor() { }
   user = firebase.auth().currentUser;
+  confirmationPassword;
   loginUser(email: string, password: string): Promise<any> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
-
+;
   signupUser(email: string, password: string): Promise<any> {
-
+    this.confirmationPassword = password;
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -32,6 +33,7 @@ export class AuthData {
   }
 
   sendConfirmationEmail(): Promise<void> {
+    console.log(this.confirmationPassword);
     return firebase.auth().currentUser.sendEmailVerification();
   }
 }

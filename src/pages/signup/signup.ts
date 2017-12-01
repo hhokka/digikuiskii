@@ -50,6 +50,7 @@ export class SignupPage {
             let alert = this.alertCtrl.create({
               message: error.message,
               buttons: [
+                
                 {
                   text: "Ok",
                   role: 'cancel'
