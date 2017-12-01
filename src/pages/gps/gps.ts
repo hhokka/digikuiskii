@@ -9,7 +9,7 @@ import { LeaderProvider } from '../../providers/leader/leader';
 import { Gps } from '../../shared/gps';
 import { GpsProvider } from '../../providers/gps/gps';
 import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
-
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-gps',
@@ -61,9 +61,21 @@ export class GpsPage implements OnInit {
     });
   }
   ionViewDidEnter() {
-    this.getUserPosition();
+    let iterator: number = 0;
+    let interval: number = setInterval(() => {
+      
+      this.getUserPosition();
+      this.updateLocationToFirebase(iterator, iterator);
+      iterator++;
+    }, 1000);
   }
-
+  updateLocationToFirebase(latitude: number, longitude: number): void {
+    const locationRef: firebase.database.Reference = firebase.database().ref('/Data/Person/Hans/Location/')
+    locationRef.set({
+      latitude,
+      longitude
+    })
+  }
   ngOnInit() {
     this.gpsservice.getGeolocation()
       .subscribe(gps => this.gps = gps,
