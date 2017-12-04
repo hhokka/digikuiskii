@@ -62,15 +62,15 @@ export class GpsPage implements OnInit {
   }
   ionViewDidEnter() {
     let iterator: number = 0;
+    this.getUserPosition();
     let interval: number = setInterval(() => {
-      
-      this.getUserPosition();
-      this.updateLocationToFirebase(iterator, iterator);
+      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude);
       iterator++;
+      this.getUserPosition();
     }, 1000);
   }
-  updateLocationToFirebase(latitude: number, longitude: number): void {
-    const locationRef: firebase.database.Reference = firebase.database().ref('/Data/Person/Hans/Location/')
+  updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
+    const locationRef: firebase.database.Reference = firebase.database().ref('/Data/Person/Hans/Location/' + index + '/' + timestamp + '/')
     locationRef.set({
       latitude,
       longitude
