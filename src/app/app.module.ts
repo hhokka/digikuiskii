@@ -33,6 +33,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AuthData } from '../providers/auth/auth';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
+import { GeocoderProvider } from '../providers/geocoder/geocoder';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -85,7 +88,9 @@ import { AuthData } from '../providers/auth/auth';
     ProfileProvider,
     AndroidPermissions,
     AngularFireAuth,
-    AuthData
+    AuthData,
+    NativeGeocoder,
+    GeocoderProvider
 
   ]
 })

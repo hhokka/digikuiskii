@@ -10,6 +10,8 @@ import { Gps } from '../../shared/gps';
 import { GpsProvider } from '../../providers/gps/gps';
 import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
+import { GeocoderProvider } from '../../providers/geocoder/geocoder';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'page-gps',
@@ -29,7 +31,6 @@ export class GpsPage implements OnInit {
   longitude: number;
   timestamp: number;
   speed: number;
-
   options: GeolocationOptions;
   currentPos: Geoposition;
 
@@ -39,6 +40,8 @@ export class GpsPage implements OnInit {
     private leaderservice: LeaderProvider,
     private gpsservice: GpsProvider,
     private geolocation: Geolocation,
+    private geocoder: GeocoderProvider,
+    private http: Http,
 
     @Inject('BaseURL') private BaseURL) { }
 
@@ -71,10 +74,12 @@ export class GpsPage implements OnInit {
   }
   updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
     const locationRef: firebase.database.Reference = firebase.database().ref('/Data/Person/Hans/Location/' + index + '/' + timestamp + '/')
+    let address = this.geocoder.getAddressFromCoords();
     locationRef.set({
-      latitude,
+      address,
       longitude
     })
+    console.log(this.http.get('http://www.fi'));
   }
   ngOnInit() {
     this.gpsservice.getGeolocation()
