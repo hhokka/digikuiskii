@@ -11,7 +11,7 @@ import { GpsProvider } from '../../providers/gps/gps';
 import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
 import { GeocoderProvider } from '../../providers/geocoder/geocoder';
-import {Http} from '@angular/http';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-gps',
@@ -33,6 +33,7 @@ export class GpsPage implements OnInit {
   speed: number;
   options: GeolocationOptions;
   currentPos: Geoposition;
+  result: string;
 
   constructor(public navCtrl: NavController,
     private dishservice: DishProvider,
@@ -57,7 +58,7 @@ export class GpsPage implements OnInit {
       this.longitude = pos.coords.longitude;
       this.timestamp = pos.timestamp;
       this.speed = pos.coords.speed;
-      console.log(pos);
+      //console.log(pos);
 
     }, (err: PositionError) => {
       console.log("error : " + err.message);
@@ -73,14 +74,17 @@ export class GpsPage implements OnInit {
     }, 1000);
   }
   updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
-    const locationRef: firebase.database.Reference = firebase.database().ref('/Data/Person/Hans/Location/' + index + '/' + timestamp + '/')
-    let address = this.geocoder.getAddressFromCoords();
+    const locationRef: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + index + '/' + timestamp + '/')
+    this.result = JSON.stringify(this.geocoder.getLocation('finland'));
     locationRef.set({
-      address,
+      //address,
+      latitude,
       longitude
-    })
-    console.log(this.http.get('http://www.fi'));
+    });
+    console.log('address: ' + this.result);
   }
+
+  
   ngOnInit() {
     this.gpsservice.getGeolocation()
       .subscribe(gps => this.gps = gps,
