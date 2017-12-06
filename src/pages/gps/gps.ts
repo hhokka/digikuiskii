@@ -12,13 +12,15 @@ import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@io
 import * as firebase from 'firebase';
 import { GeocoderProvider } from '../../providers/geocoder/geocoder';
 import { Http } from '@angular/http';
-
+import { ViewChild, ElementRef } from '@angular/core';
+declare var google;
 @Component({
   selector: 'page-gps',
   templateUrl: 'gps.html'
 })
 export class GpsPage implements OnInit {
 
+  
   dish: Dish;
   promotion: Promotion;
   leader: Leader;
@@ -34,6 +36,7 @@ export class GpsPage implements OnInit {
   options: GeolocationOptions;
   currentPos: Geoposition;
   result: string;
+  address: string;
 
   constructor(public navCtrl: NavController,
     private dishservice: DishProvider,
@@ -73,18 +76,38 @@ export class GpsPage implements OnInit {
       this.getUserPosition();
     }, 1000);
   }
+  
   updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
-    const locationRef: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + index + '/' + timestamp + '/')
-    this.result = JSON.stringify(this.geocoder.getLocation('finland'));
-    locationRef.set({
-      //address,
-      latitude,
-      longitude
-    });
-    console.log('address: ' + this.result);
+   
+var address: string;
+      var geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(this.latitude, this.longitude);
+      var request = {
+        latLng: latlng
+      };
+      geocoder.geocode(request, function (data, status) {
+        this.address = data[0].formatted_address;
+        
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (data[0] != null) {
+            const locationRef: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + index + '/Timestamp: ' + timestamp + '/Address: ' + this.address);
+            locationRef.set({
+              latitude,
+              longitude
+            });
+            
+            
+          } else {
+            alert("No address available");
+          }
+        }
+        
+      });
+      alert (this.address);
   }
 
-  
+
+
   ngOnInit() {
     this.gpsservice.getGeolocation()
       .subscribe(gps => this.gps = gps,
@@ -93,3 +116,7 @@ export class GpsPage implements OnInit {
   }
 
 }
+
+
+
+
