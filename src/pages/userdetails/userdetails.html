@@ -1,0 +1,28 @@
+<ion-content padding>
+  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+
+    <ion-item>
+      <ion-label>Superpowers</ion-label>
+      <ion-checkbox color="dark" checked="true"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Superpowers</ion-label>
+      <ion-checkbox color="dark" checked="true"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Superpowers</ion-label>
+      <ion-checkbox color="dark" name="three" checked="true"></ion-checkbox>
+    </ion-item>
+    <button ion-button block type="submit" [disabled]="signupForm.valid">
+      Submit User Data
+    </button>
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Your password" 
+        [class.invalid]="!signupForm.controls.password.valid && blur">
+      </ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+
+<!-- DOES NOT TRANSFER CHECKBOX VALUES TO MAIN LOGIC YET -->

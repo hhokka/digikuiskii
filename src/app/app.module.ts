@@ -35,6 +35,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AuthData } from '../providers/auth/auth';
 import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { GeocoderProvider } from '../providers/geocoder/geocoder';
+import { UserdetailsPage } from '../pages/userdetails/userdetails';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { GeocoderProvider } from '../providers/geocoder/geocoder';
     FrontPage,
    
     GpsPage,
-    LoginPage
+    LoginPage,
+    UserdetailsPage
 
   ],
   imports: [
@@ -64,7 +66,8 @@ import { GeocoderProvider } from '../providers/geocoder/geocoder';
     FrontPage,
    
     GpsPage,
-    LoginPage
+    LoginPage,
+    UserdetailsPage
   ],
   providers: [
     StatusBar,
