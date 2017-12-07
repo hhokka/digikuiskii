@@ -9,6 +9,8 @@ import { AuthData } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 import { MapPage } from '../map/map';
 import { LoginPage } from '../login/login';
+import * as firebase from 'firebase';
+
 
 @IonicPage({
   name: 'userdetails'
@@ -29,7 +31,11 @@ export class UserdetailsPage {
     public alertCtrl: AlertController
   ) {
       this.signupForm = formBuilder.group({
-        three: ['', Validators.required],
+        ironfist: ['false'],
+        heavygunner: ['false'],
+        steadyaim: ['false'],
+        aquaboy: ['false'],
+        kotikunta: [''],
         email: ['', 
           Validators.compose([Validators.required, EmailValidator.isValid])],
         password: ['', 
@@ -37,35 +43,18 @@ export class UserdetailsPage {
       });
     }
     signupUser(){
-      alert(this.signupForm.value);
-      if (!this.signupForm.valid){
+        let data: string;
+        data = JSON.stringify(this.signupForm.value)
         console.log(this.signupForm.value);
-      } else {
-        this.authProvider.signupUser(this.signupForm.value.email, 
-          this.signupForm.value.password)
-        .then(() => {
-          this.loading.dismiss().then( () => {
-            this.navCtrl.setRoot(LoginPage);
-            this.authProvider.sendConfirmationEmail();
-          });
-        }, (error) => {
-          this.loading.dismiss().then( () => {
-            let alert = this.alertCtrl.create({
-              message: error.message,
-              buttons: [
-                
-                {
-                  text: "Ok",
-                  role: 'cancel'
-                }
-              ]
-            });
-            alert.present();
-          });
-        });
-        this.loading = this.loadingCtrl.create();
-        this.loading.present();
-      }
-      
+        this.putInfoToFirebase(data);
+        
+
     }
-}
+
+    putInfoToFirebase(userDetailedInfo: string): void {
+      const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
+      personRef.set({
+        userDetailedInfo
+      })
+    }
+  }

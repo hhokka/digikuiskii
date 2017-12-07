@@ -2,27 +2,43 @@
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 
     <ion-item>
-      <ion-label>Superpowers</ion-label>
-      <ion-checkbox color="dark" checked="true"></ion-checkbox>
+      <ion-label>Iron Fist</ion-label>
+      <ion-checkbox checked="false" formControlName="ironfist"></ion-checkbox>
     </ion-item>
     <ion-item>
-      <ion-label>Superpowers</ion-label>
-      <ion-checkbox color="dark" checked="true"></ion-checkbox>
+      <ion-label>Heavy Gunner</ion-label>
+      <ion-checkbox checked="false" formControlName="heavygunner"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Steady Aim</ion-label>
+      <ion-checkbox checked="false" formControlName="steadyaim"></ion-checkbox>
     </ion-item>
     <ion-item>
-      <ion-label>Superpowers</ion-label>
-      <ion-checkbox color="dark" name="three" checked="true"></ion-checkbox>
+
+      <ion-label>Aquaboy</ion-label>
+      <ion-checkbox checked="false" formControlName='aquaboy'></ion-checkbox>
     </ion-item>
+
+    <ion-item>
+      <ion-label>Kotikuntasi</ion-label>
+      <ion-select formControlName="kotikunta">
+        <ion-option>Helsinki</ion-option>
+        <ion-option>Espoo</ion-option>
+        <ion-option>Vantaa</ion-option>
+        <ion-option>Kauniainen</ion-option>
+      </ion-select>
+    </ion-item>
+
     <button ion-button block type="submit" [disabled]="signupForm.valid">
       Submit User Data
     </button>
-    <ion-item>
+
+    <ion-item style="display:none">
       <ion-label stacked>Password</ion-label>
-      <ion-input formControlName="password" type="password" placeholder="Your password" 
-        [class.invalid]="!signupForm.controls.password.valid && blur">
+      <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!signupForm.controls.password.valid && blur">
       </ion-input>
+
     </ion-item>
   </form>
 </ion-content>
-
-<!-- DOES NOT TRANSFER CHECKBOX VALUES TO MAIN LOGIC YET -->

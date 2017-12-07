@@ -44,7 +44,7 @@ export class MyApp {
         { title: 'Location', icon: 'compass', component: GpsPage},
        { title: 'Firebase', icon: 'cloud-upload', component: DbManipulatePage},
        { title: 'Login', icon: 'key', component: LoginPage},
-       { title: 'User Details', icon: 'face', component: UserdetailsPage}   ];
+       { title: 'User Details', icon: 'person', component: UserdetailsPage}   ];
 
        const unsubscribe = firebase.auth().onAuthStateChanged( user => {
         if (!user) {
