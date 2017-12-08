@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
-
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 /**
  * Generated class for the DevDisplayRestPage page.
  *
@@ -16,15 +21,21 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class DevDisplayRestPage {
   users: any;
+  printData: any;
+  value: any;
+  movies: any;
+  movie: {};
+  obj: any;
+  txt: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
     this.getUsers();
   }
   getUsers() {
-    this.restProvider.getUsers()
+    this.restProvider.getRemoteData()
     .then(data => {
-      this.users = data;
-      console.log(JSON.stringify(data)); // PROBLEM LIES HERE
-    });
+      this.printData = data;
+      this.printData = this.printData._body;
+     });
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad DevDisplayRestPage');
