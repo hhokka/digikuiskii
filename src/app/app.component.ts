@@ -9,7 +9,7 @@ import { DbManipulatePage } from '../pages/dbmanipulate/dbmanipulate';
 import { FrontPage } from '../pages/front/front';
 import { GpsPage } from '../pages/gps/gps';
 import { UserdetailsPage } from '../pages/userdetails/userdetails';
-
+import { DevDisplayRestPage } from '../pages/dev-display-rest/dev-display-rest';
 import { LoginPage } from '../pages/login/login';
 import { Firebase } from '@ionic-native/firebase';
 import firebase from 'firebase';
@@ -44,7 +44,8 @@ export class MyApp {
         { title: 'Location', icon: 'compass', component: GpsPage},
        { title: 'Firebase', icon: 'cloud-upload', component: DbManipulatePage},
        { title: 'Login', icon: 'key', component: LoginPage},
-       { title: 'User Details', icon: 'person', component: UserdetailsPage}   ];
+       { title: 'User Details', icon: 'person', component: UserdetailsPage},
+      {title: 'DevDisplayRest', icon: 'outlet', component: DevDisplayRestPage}   ];
 
        const unsubscribe = firebase.auth().onAuthStateChanged( user => {
         if (!user) {
