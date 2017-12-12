@@ -31,10 +31,12 @@ export class UserdetailsPage {
     public alertCtrl: AlertController
   ) {
       this.signupForm = formBuilder.group({
-        ironfist: ['false'],
-        heavygunner: ['false'],
-        steadyaim: ['false'],
-        aquaboy: ['false'],
+        urheilu: ['false'],
+        musiikki: ['false'],
+        tvohjelmat: ['false'],
+        elokuvat: ['false'],
+        pelit: ['false'],
+        kirjat: ['false'],
         kotikunta: [''],
         email: ['', 
           Validators.compose([Validators.required, EmailValidator.isValid])],

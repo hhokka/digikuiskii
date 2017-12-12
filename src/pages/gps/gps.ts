@@ -77,6 +77,9 @@ export class GpsPage implements OnInit {
     }, 1000);
   }
   
+ 
+ // TYPESCRIPT SCOPE ISSUE: THIS.ADDRESS DOESN'T SHOW OUTSIDE GEOCODE FUNCTION
+ 
   updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
    
 var address: string;

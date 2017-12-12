@@ -34,7 +34,10 @@ export class DevDisplayRestPage {
     this.restProvider.getRemoteData()
     .then(data => {
       this.printData = data;
-      this.printData = this.printData._body;
+      this.printData = JSON.parse(this.printData._body);
+      for (let entry of this.printData){
+        alert(entry['id']);
+      }
      });
   }
   ionViewDidLoad() {

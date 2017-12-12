@@ -1,5 +1,7 @@
-page-signup {
+page-userdetails{
     .invalid { 
       border-bottom: 1px solid #FF6153; 
     }
+    border: 10px solid red;
+    $label-wp-text-color: red;
   }

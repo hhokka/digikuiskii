@@ -1,23 +1,34 @@
 <ion-content padding>
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
-
-    <ion-item>
-      <ion-label>Iron Fist</ion-label>
-      <ion-checkbox checked="false" formControlName="ironfist"></ion-checkbox>
-    </ion-item>
-    <ion-item>
-      <ion-label>Heavy Gunner</ion-label>
-      <ion-checkbox checked="false" formControlName="heavygunner"></ion-checkbox>
+<ion-list >
+    <ion-item color="primary-pale">
+      <ion-label>Urheilu</ion-label>
+      <ion-checkbox checked="false" formControlName="urheilu"></ion-checkbox>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Steady Aim</ion-label>
-      <ion-checkbox checked="false" formControlName="steadyaim"></ion-checkbox>
+    <ion-item color="primary-pale">
+      <ion-label>Musiikki</ion-label>
+      <ion-checkbox checked="false" formControlName="musiikki"></ion-checkbox>
     </ion-item>
-    <ion-item>
 
-      <ion-label>Aquaboy</ion-label>
-      <ion-checkbox checked="false" formControlName='aquaboy'></ion-checkbox>
+    <ion-item>
+      <ion-label>Elokuvat</ion-label>
+      <ion-checkbox checked="false" formControlName="elokuvat"></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>TVohjelmat</ion-label>
+      <ion-checkbox checked="false" formControlName='tvohjelmat'></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>Kirjat</ion-label>
+    <ion-checkbox checked="false" formControlName='kirjat'></ion-checkbox>
+    </ion-item>
+
+    <ion-item>
+    <ion-label>Pelit</ion-label>
+    <ion-checkbox checked="false" formControlName='pelit'></ion-checkbox>
     </ion-item>
 
     <ion-item>
@@ -29,9 +40,9 @@
         <ion-option>Kauniainen</ion-option>
       </ion-select>
     </ion-item>
-
+</ion-list>
     <button ion-button block type="submit" [disabled]="signupForm.valid">
-      Submit User Data
+      Lähetä tiedot
     </button>
 
     <ion-item style="display:none">

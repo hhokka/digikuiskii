@@ -17,14 +17,14 @@ export class RestProvider {
   apiUrl:string = 'https://jsonplaceholder.typicode.com/posts';
   testUrl = 'http://echo.jsontest.com/';
   randomUrl = 'https://randomuser.me/api/';
-  remoteUrl = 'https://api.example.com/?limit=10';
+  remoteUrl = 'http://gis.vantaa.fi/rest/tyopaikat/v1/Opetusala';
   constructor(public http: Http) {
     console.log('Hello RestProvider Provider');
   }
 
   getRemoteData() {
     return new Promise(resolve => {
-      this.http.get(this.randomUrl+'').subscribe(data => {
+      this.http.get(this.remoteUrl+'').subscribe(data => {
         console.log(JSON.stringify(data));
         resolve(data);
       }, err => {
