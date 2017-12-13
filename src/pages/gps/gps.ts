@@ -20,7 +20,7 @@ declare var google;
 })
 export class GpsPage implements OnInit {
 
-  
+
   dish: Dish;
   promotion: Promotion;
   leader: Leader;
@@ -36,7 +36,7 @@ export class GpsPage implements OnInit {
   options: GeolocationOptions;
   currentPos: Geoposition;
   result: string;
-  address: string;
+  visibleAddress: any;
 
   constructor(public navCtrl: NavController,
     private dishservice: DishProvider,
@@ -67,50 +67,60 @@ export class GpsPage implements OnInit {
       console.log("error : " + err.message);
     });
   }
+  
+  getTopPlaces() {
+    let locations: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + '/Timestamp: ' + '/Address: ');
+    alert('getTopPlaces: ' + locations);
+  }
+
   ionViewDidEnter() {
     let iterator: number = 0;
+    let address;
     this.getUserPosition();
     let interval: number = setInterval(() => {
-      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude);
+      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude).then((val) => alert(val));
       iterator++;
       this.getUserPosition();
     }, 1000);
   }
-  
- 
- // TYPESCRIPT SCOPE ISSUE: THIS.ADDRESS DOESN'T SHOW OUTSIDE GEOCODE FUNCTION
- 
-  updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
-   
-var address: string;
-      var geocoder = new google.maps.Geocoder();
-      var latlng = new google.maps.LatLng(this.latitude, this.longitude);
-      var request = {
-        latLng: latlng
-      };
-      geocoder.geocode(request, function (data, status) {
-        this.address = data[0].formatted_address;
-        
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (data[0] != null) {
-            const locationRef: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + index + '/Timestamp: ' + timestamp + '/Address: ' + this.address);
-            locationRef.set({
-              latitude,
-              longitude
-            });
-            
-            
-          } else {
-            alert("No address available");
-          }
+
+
+
+  // TYPESCRIPT SCOPE ISSUE: THIS.ADDRESS DOESN'T SHOW OUTSIDE GEOCODE FUNCTION
+
+  updateLocationToFirebase = async(index: number, timestamp: number, latitude: number, longitude: number) => {
+    var address;
+    var geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(this.latitude, this.longitude);
+    var request = {
+      latLng: latlng
+    };
+    this.getTopPlaces();
+    
+    geocoder.geocode(request, function (data, status) {
+      address = data[0].formatted_address;
+      this.visibleAddress = address;
+      
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (data[0] != null) {
+         
+          const locationRef: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + index + '/Timestamp: ' + timestamp + '/Address: ' + this.address);
+          locationRef.set({
+            latitude,
+            longitude
+          });
+resolve(address);
+        } else {
+          alert("No address available");
         }
-        
-      });
-      alert (this.address);
+      }
+
+    });
+    alert (address);
   }
 
 
-
+  
   ngOnInit() {
     this.gpsservice.getGeolocation()
       .subscribe(gps => this.gps = gps,
