@@ -38,6 +38,7 @@ import { GeocoderProvider } from '../providers/geocoder/geocoder';
 import { UserdetailsPage } from '../pages/userdetails/userdetails';
 import { RestProvider } from '../providers/rest/rest';
 import { DevDisplayRestPage } from '../pages/dev-display-rest/dev-display-rest'
+import { FireparserProvider } from '../providers/fireparser/fireparser';
 @NgModule({
   declarations: [
     MyApp,
@@ -97,7 +98,8 @@ import { DevDisplayRestPage } from '../pages/dev-display-rest/dev-display-rest'
     AuthData,
     NativeGeocoder,
     GeocoderProvider,
-    RestProvider
+    RestProvider,
+    FireparserProvider
 
   ]
 })

@@ -13,6 +13,7 @@ import * as firebase from 'firebase';
 import { GeocoderProvider } from '../../providers/geocoder/geocoder';
 import { Http } from '@angular/http';
 import { ViewChild, ElementRef } from '@angular/core';
+import { FireparserProvider } from '../../providers/fireparser/fireparser';
 declare var google;
 @Component({
   selector: 'page-gps',
@@ -46,6 +47,7 @@ export class GpsPage implements OnInit {
     private geolocation: Geolocation,
     private geocoder: GeocoderProvider,
     private http: Http,
+    private fireparserservice: FireparserProvider,
 
     @Inject('BaseURL') private BaseURL) { }
 
@@ -55,7 +57,7 @@ export class GpsPage implements OnInit {
     };
 
     this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
-
+      this.fireparserservice.createPerson('teemu', 'testaaja');
       this.currentPos = pos;
       this.latitude = pos.coords.latitude;
       this.longitude = pos.coords.longitude;
@@ -67,15 +69,15 @@ export class GpsPage implements OnInit {
       console.log("error : " + err.message);
     });
   }
-
+  returnValue(rdata){
+    return rdata;
+  }
   ionViewDidEnter() {
     let iterator: number = 0;
     let address;
     this.getUserPosition();
     let interval: number = setInterval(() => {
-      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude, function(address){
-        alert(address);
-      });
+      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude, this.returnValue);
       iterator++;
       this.getUserPosition();
     }, 1000);
