@@ -67,57 +67,48 @@ export class GpsPage implements OnInit {
       console.log("error : " + err.message);
     });
   }
-  
-  getTopPlaces() {
-    let locations: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + '/Timestamp: ' + '/Address: ');
-    alert('getTopPlaces: ' + locations);
-  }
 
   ionViewDidEnter() {
     let iterator: number = 0;
     let address;
     this.getUserPosition();
     let interval: number = setInterval(() => {
-      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude).then((val) => alert(val));
+      this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude, function(address){
+        alert(address);
+      });
       iterator++;
       this.getUserPosition();
     }, 1000);
   }
-
-
-
   // TYPESCRIPT SCOPE ISSUE: THIS.ADDRESS DOESN'T SHOW OUTSIDE GEOCODE FUNCTION
 
-  updateLocationToFirebase = async(index: number, timestamp: number, latitude: number, longitude: number) => {
+  updateLocationToFirebase = async(index: number, timestamp: number, latitude: number, longitude: number, returnValue) => {
     var address;
     var geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(this.latitude, this.longitude);
     var request = {
       latLng: latlng
     };
-    this.getTopPlaces();
-    
     geocoder.geocode(request, function (data, status) {
       address = data[0].formatted_address;
-      this.visibleAddress = address;
-      
+      returnValue(address);
       if (status == google.maps.GeocoderStatus.OK) {
         if (data[0] != null) {
-         
           const locationRef: firebase.database.Reference = firebase.database().ref('/Data/user/Hans/Location/' + index + '/Timestamp: ' + timestamp + '/Address: ' + this.address);
           locationRef.set({
             latitude,
             longitude
           });
-resolve(address);
+
         } else {
           alert("No address available");
         }
       }
 
     });
-    alert (address);
   }
+
+  
 
 
   
