@@ -24,40 +24,61 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 @Injectable()
 export class FireparserProvider {
 
+  public allDataPerUser: any;
+  public firstName: string;
+  lastName: string;
   constructor(public http: Http) {
     console.log('Hello FireparserProvider Provider');
   }
 
-  myPerson = {};
 
   ngOnInit() {
   }
 
-  createPerson(firstName: string, lastName: string): void {
-    alert (firstName + " " +  lastName);
-    const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
-    personRef.set({
-      firstName,
-      lastName
-    })
-  }
-
-  updatePerson(firstName: string, lastName: string): void {
-    const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
-    personRef.update({
-      firstName,
-      lastName
-    })
-  }
-
-  deletePerson(): void {
-    const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
-    personRef.remove()
-  }
-  ionViewDidLoad() {
-    const personRef: firebase.database.Reference = firebase.database().ref(`Data`);
-    personRef.on('value', personSnapshot => {
-      this.myPerson = personSnapshot.val();
+  public getJSON(tag) {
+    const allDataRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/');
+    allDataRef.on('value', allDataSnapshot => {
+      this.allDataPerUser = allDataSnapshot.val();
+      if (tag == 'address'){
+        console.log('yup');
+      return ('this.allDataPerUser');
+      }else{
+        console.log('nope');
+        return 'nope';
+      }
     });
+  }
+
+ /*WON'T RETURN ANYTHING, MAYBE SHOULD USE SLT:
+
+  parameter: ReplaySubject<string> = new ReplaySubject<string>(1);
+  
+  constructor(public http: Http, public storage: Storage) {
+    storage.get('Parameter').then((param) => {
+      if (param) {
+        this.parameter.next(param);
+      } else {
+        http.get('url').subscribe((rsp) => {
+          this.parameter.next(rsp.json().parameter);
+          // you could save it in storage here if you want
+        }
+        // TODO: error handling
+      }
+    }
+  }
+  
+  class Page {
+    parameter: string = "loading...or whatever dummy value makes sense";
+  
+    constructor(pp: ParameterProvider) {
+      pp.parameter.subscribe((param) => {
+        this.parameter = param;
+      }
+    }
+  } */
+
+  getAddress(){
+    console.log('this ' + this.getJSON('address'));
+    return this.getJSON('address');
   }
 }
