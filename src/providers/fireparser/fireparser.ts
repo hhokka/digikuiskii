@@ -25,9 +25,32 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 export class FireparserProvider {
 
   public allDataPerUser: any;
-  public firstName: string;
+  firstName: string;
   lastName: string;
+  address: string;
+
+  setUserName(firstName, lastName) {
+      this.firstName = firstName;
+      this.lastName = lastName;       
+  }
+
+  getUserName() {
+      return this.firstName + ' ' + this.lastName;
+  }  
+  
+  getAddress(){
+    this.getJSON('address');
+    return this.address;
+  }
+
+  setAddress(addr){
+    this.address = addr;
+    console.log(addr);
+    alert(addr);
+  }
   constructor(public http: Http) {
+    this.firstName = 'Blank';
+    this.lastName = 'Name';
     console.log('Hello FireparserProvider Provider');
   }
 
@@ -40,7 +63,9 @@ export class FireparserProvider {
     allDataRef.on('value', allDataSnapshot => {
       this.allDataPerUser = allDataSnapshot.val();
       if (tag == 'address'){
-        console.log('yup');
+        this.address = JSON.stringify(this.allDataPerUser);
+        this.setAddress(this.address);
+        console.log(this.address[0]);
       return ('this.allDataPerUser');
       }else{
         console.log('nope');
@@ -48,37 +73,6 @@ export class FireparserProvider {
       }
     });
   }
-
- /*WON'T RETURN ANYTHING, MAYBE SHOULD USE SLT:
-
-  parameter: ReplaySubject<string> = new ReplaySubject<string>(1);
   
-  constructor(public http: Http, public storage: Storage) {
-    storage.get('Parameter').then((param) => {
-      if (param) {
-        this.parameter.next(param);
-      } else {
-        http.get('url').subscribe((rsp) => {
-          this.parameter.next(rsp.json().parameter);
-          // you could save it in storage here if you want
-        }
-        // TODO: error handling
-      }
-    }
-  }
   
-  class Page {
-    parameter: string = "loading...or whatever dummy value makes sense";
-  
-    constructor(pp: ParameterProvider) {
-      pp.parameter.subscribe((param) => {
-        this.parameter = param;
-      }
-    }
-  } */
-
-  getAddress(){
-    console.log('this ' + this.getJSON('address'));
-    return this.getJSON('address');
-  }
 }

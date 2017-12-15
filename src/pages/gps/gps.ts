@@ -21,7 +21,7 @@ declare var google;
 })
 export class GpsPage implements OnInit {
 
-  
+
   dish: Dish;
   promotion: Promotion;
   leader: Leader;
@@ -51,6 +51,12 @@ export class GpsPage implements OnInit {
 
     @Inject('BaseURL') private BaseURL) { }
 
+  set(){
+    this.fireparserservice.setUserName('hans', 'hokka');
+  }
+  get(){
+    alert(this.fireparserservice.getAddress());
+  }
   getUserPosition() {
     this.options = {
       enableHighAccuracy: true
@@ -71,50 +77,51 @@ export class GpsPage implements OnInit {
   }
   ionViewDidEnter() {
     let iterator: number = 0;
-    
+    this.set();
     this.getUserPosition();
+    this.get();
     let interval: number = setInterval(() => {
       this.updateLocationToFirebase(iterator, this.timestamp, this.latitude, this.longitude);
       iterator++;
       this.getUserPosition();
-      console.log(this.fireparserservice.getJSON('address'));
+      this.get();
+      
+      
     }, 5000);
   }
-  
- 
- // TYPESCRIPT SCOPE ISSUE: THIS.ADDRESS DOESN'T SHOW OUTSIDE GEOCODE FUNCTION
- 
+
+
+  // TYPESCRIPT SCOPE ISSUE: THIS.ADDRESS DOESN'T SHOW OUTSIDE GEOCODE FUNCTION
+
   updateLocationToFirebase(index: number, timestamp: number, latitude: number, longitude: number): void {
-   
-var address: string;
-      var geocoder = new google.maps.Geocoder();
-      var latlng = new google.maps.LatLng(this.latitude, this.longitude);
-      var request = {
-        latLng: latlng
-      };
-      geocoder.geocode(request, function (data, status) {
-        this.address = data[0].formatted_address;
-        
-        if (status == google.maps.GeocoderStatus.OK) {
-          if (data[0] != null) {
-            const locationRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/address/' + this.address);
-            //alert (this.address);
-            locationRef.set({
-              latitude,
-              longitude
-            });
-            
-            
-          } else {
-            alert("No address available");
-          }
+
+    var address: string;
+    var geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(this.latitude, this.longitude);
+    var request = {
+      latLng: latlng
+    };
+    geocoder.geocode(request, function (data, status) {
+      this.address = data[0].formatted_address;
+
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (data[0] != null) {
+          const locationRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/address/' + this.address);
+          //alert (this.address);
+          locationRef.set({
+            address,
+            longitude
+          });
+
+
+        } else {
+          alert("No address available");
         }
-        
-      });
-      
+      }
+
+    });
+
   }
-
-
 
   ngOnInit() {
     this.gpsservice.getGeolocation()
