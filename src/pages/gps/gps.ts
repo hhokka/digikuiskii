@@ -14,6 +14,7 @@ import { GeocoderProvider } from '../../providers/geocoder/geocoder';
 import { Http } from '@angular/http';
 import { ViewChild, ElementRef } from '@angular/core';
 import { FireparserProvider } from '../../providers/fireparser/fireparser';
+import { Frequency } from '../../shared/frequency';
 declare var google;
 @Component({
   selector: 'page-gps',
@@ -38,6 +39,8 @@ export class GpsPage implements OnInit {
   currentPos: Geoposition;
   result: string;
   address: string;
+  displayAddress: string;
+  displayAddresses: string;
 
   constructor(public navCtrl: NavController,
     private dishservice: DishProvider,
@@ -55,7 +58,9 @@ export class GpsPage implements OnInit {
     this.fireparserservice.setUserName('hans', 'hokka');
   }
   get(){
-    alert(this.fireparserservice.getAddress());
+    console.log('get: ' + this.fireparserservice.getAddress());
+    this.displayAddress = this.fireparserservice.getAddress();
+    this.displayAddresses = this.fireparserservice.getAddresses();
   }
   getUserPosition() {
     this.options = {
@@ -106,14 +111,14 @@ export class GpsPage implements OnInit {
 
       if (status == google.maps.GeocoderStatus.OK) {
         if (data[0] != null) {
-          const locationRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/address/' + this.address);
-          //alert (this.address);
-          locationRef.set({
-            address,
-            longitude
-          });
-
-
+          const addressRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/address/');
+          const latitudeRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/latitude/');
+          const longitudeRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/longitude/');
+          const addressHistoryRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid + '/address_history');
+          addressRef.set(data[0].formatted_address);
+          latitudeRef.set(latitude);
+          longitudeRef.set(longitude);
+          addressHistoryRef.push().set(data[0].formatted_address);
         } else {
           alert("No address available");
         }

@@ -15,7 +15,6 @@ import { Firebase } from '@ionic-native/firebase';
 import firebase from 'firebase';
 import { FIREBASE_CREDENTIALS } from '../shared/credentials';
 
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -45,7 +44,7 @@ export class MyApp {
        { title: 'Firebase', icon: 'cloud-upload', component: DbManipulatePage},
        { title: 'Login', icon: 'key', component: LoginPage},
        { title: 'User Details', icon: 'person', component: UserdetailsPage},
-      {title: 'DevDisplayRest', icon: 'outlet', component: DevDisplayRestPage}   ];
+      {title: 'Työpaikat', icon: 'logo-euro', component: DevDisplayRestPage}   ];
 
        const unsubscribe = firebase.auth().onAuthStateChanged( user => {
         if (!user) {

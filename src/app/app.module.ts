@@ -10,6 +10,7 @@ import { FrontPage } from '../pages/front/front';
 import { GpsPage } from '../pages/gps/gps';
 
 import { baseURL } from '../shared/baseurl';
+import { Frequency } from '../shared/frequency';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DishProvider } from '../providers/dish/dish';
@@ -39,6 +40,7 @@ import { UserdetailsPage } from '../pages/userdetails/userdetails';
 import { RestProvider } from '../providers/rest/rest';
 import { DevDisplayRestPage } from '../pages/dev-display-rest/dev-display-rest'
 import { FireparserProvider } from '../providers/fireparser/fireparser';
+import { ExpandableComponent } from '../components/expandable/expandable';
 @NgModule({
   declarations: [
     MyApp,
@@ -50,7 +52,8 @@ import { FireparserProvider } from '../providers/fireparser/fireparser';
     GpsPage,
     LoginPage,
     UserdetailsPage,
-    DevDisplayRestPage
+    DevDisplayRestPage,
+    ExpandableComponent
 
   ],
   imports: [

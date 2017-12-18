@@ -1,0 +1,7 @@
+lista:
+	listaa työpaikat
+	click -> avaa lisätiedot
+		linkki
+		sijainti
+	sorttaaminen käyttäjän sijainnin mukaan, näytetään ensin lähellä olevat
+

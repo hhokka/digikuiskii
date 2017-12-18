@@ -35,7 +35,16 @@
       <ion-card-title>
         Address: 
     </ion-card-title>
-    {{retdat}}
+    {{displayAddress}}
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="gps">
+  <ion-card-content>
+      <ion-card-title>
+        Addresses: 
+    </ion-card-title>
+    {{displayAddresses}}
   </ion-card-content>
 </ion-card>
 

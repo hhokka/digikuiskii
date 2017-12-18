@@ -1,3 +1,37 @@
-page-dev-display-rest {
+page-dev-display-rest{
+    
+     .button {
+         width: 100%;
+         height: 15%;
+         bottom: -250px;
+     }
+         
+     .bg-pic{
+         height: 100%;
+     background-image: url('../assets/img/background.png');
+     background-size: cover;
+     background-repeat: none;
+     background-position: -200px;
+     opacity: 0.2;
 
-}
+     }
+ 
+     .insert{
+         color: green;
+     }
+
+     .transparent{
+        border: 10px;
+        border-radius: 2px;
+        background: rgba(255, 255, 255, 0.95);
+        margin: 2px;
+     }
+
+     .selected{
+         font-size: larger;
+     }
+     .not-selected{
+         
+     }
+ }
+ 
