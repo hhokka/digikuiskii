@@ -1,12 +1,21 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>User Details</ion-title>
+    </ion-navbar>
+  </ion-header>
+
 <ion-content padding>
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 <ion-list >
-    <ion-item color="primary-pale">
+    <ion-item>
       <ion-label>Urheilu</ion-label>
       <ion-checkbox checked="false" formControlName="urheilu"></ion-checkbox>
     </ion-item>
 
-    <ion-item color="primary-pale">
+    <ion-item>
       <ion-label>Musiikki</ion-label>
       <ion-checkbox checked="false" formControlName="musiikki"></ion-checkbox>
     </ion-item>
@@ -32,7 +41,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Kotikuntasi</ion-label>
+      <ion-label> Kotikuntasi</ion-label>
       <ion-select formControlName="kotikunta">
         <ion-option>Helsinki</ion-option>
         <ion-option>Espoo</ion-option>
@@ -41,15 +50,9 @@
       </ion-select>
     </ion-item>
 </ion-list>
-    <button ion-button block type="submit" [disabled]="signupForm.valid">
+    <button ion-button block type="submit">
       Lähetä tiedot
     </button>
 
-    <ion-item style="display:none">
-      <ion-label stacked>Password</ion-label>
-      <ion-input formControlName="password" type="password" placeholder="Your password" [class.invalid]="!signupForm.controls.password.valid && blur">
-      </ion-input>
-
-    </ion-item>
   </form>
 </ion-content>

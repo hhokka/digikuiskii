@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { FireparserProvider } from '../../providers/fireparser/fireparser'
 /**
  * Generated class for the DevDisplayRestPage page.
  *
@@ -28,7 +29,8 @@ export class DevDisplayRestPage {
   movie: {};
   obj: any;
   txt: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+  distance: number;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider, public fireparserProvider: FireparserProvider) {
     this.getUsers();
   }
   toggleGroup(group) {
@@ -46,7 +48,6 @@ isGroupShown(group) {
     .then(data => {
       this.printData = data;
       this.printData = JSON.parse(this.printData._body);
-      
      });
   }
   ionViewDidLoad() {

@@ -25,7 +25,7 @@ export class RestProvider {
   getRemoteData() {
     return new Promise(resolve => {
       this.http.get(this.remoteUrl+'').subscribe(data => {
-        console.log(JSON.stringify(data));
+        
         resolve(data);
       }, err => {
         console.log(err);

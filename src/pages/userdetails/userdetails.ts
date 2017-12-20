@@ -31,22 +31,18 @@ export class UserdetailsPage {
     public alertCtrl: AlertController
   ) {
       this.signupForm = formBuilder.group({
-        urheilu: ['false'],
-        musiikki: ['false'],
-        tvohjelmat: ['false'],
-        elokuvat: ['false'],
-        pelit: ['false'],
-        kirjat: ['false'],
-        kotikunta: [''],
-        email: ['', 
-          Validators.compose([Validators.required, EmailValidator.isValid])],
-        password: ['', 
-          Validators.compose([Validators.minLength(6), Validators.required])]
+        urheilu: [false],
+        musiikki: [false],
+        tvohjelmat: [false],
+        elokuvat: [false],
+        pelit: [false],
+        kirjat: [false],
+        kotikunta: ['']
       });
     }
     signupUser(){
         let data: string;
-        data = JSON.stringify(this.signupForm.value)
+        data = this.signupForm.value;
         console.log(this.signupForm.value);
         this.putInfoToFirebase(data);
         
@@ -54,7 +50,7 @@ export class UserdetailsPage {
     }
 
     putInfoToFirebase(userDetailedInfo: string): void {
-      const personRef: firebase.database.Reference = firebase.database().ref(`/Data/`);
+      const personRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid);
       personRef.set({
         userDetailedInfo
       })

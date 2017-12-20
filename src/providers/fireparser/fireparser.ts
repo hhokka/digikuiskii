@@ -28,12 +28,13 @@ export class FireparserProvider {
   firstName: string;
   lastName: string;
   address: string;
-  addresses: string;
+  addresses: any;
 
-  arr1=[1, '1', '1', '1', 1, 3, 'a', 3, 'a', 2, 4, 9, 3];
+  arr1=['1', '1', '1', '1', '1', '3', 'a', '3', 'a', '2', '4', '9', '3'];
   mf = 1;
   m = 0;
   item;
+
 
   setUserName(firstName, lastName) {
     this.firstName = firstName;
@@ -51,11 +52,16 @@ export class FireparserProvider {
   }
 
   getAddresses() {
-    if(this.getJSON('addresses')!=null){
-    
-    this.getFrequencys(this.arr1)
+    var x;
+    this.getJSON('addresses');
+    if(this.addresses!=null){
+      for (x in this.addresses) {
+        this.getFrequencys(this.addresses[x]);
+      }
+      
+      
+      
     };
-    console.log(this.addresses);
     return this.addresses;
   }
 
@@ -72,28 +78,40 @@ export class FireparserProvider {
     this.firstName = 'Blank';
     this.lastName = 'Name';
     console.log('Hello FireparserProvider Provider');
+    this.getDistance(1,1,2,2);
   }
 
   getFrequencys(array) {
-this.arr1 = array;
-    for (var i=0; i<this.arr1.length; i++)
+    
+    for (var i=0; i<array.length; i++)
     {
-            for (var j=i; j<this.arr1.length; j++)
+            for (var j=i; j<array.length; j++)
             {
-                    if (this.arr1[i] == this.arr1[j])
+                    if (array[i] == array[j])
                      this.m++;
                     if (this.mf<this.m)
                     {
                       this.mf=this.m; 
-                      this.item = this.arr1[i];
+                      this.item = array[i];
                     }
             }
             this.m=0;
     }
-    console.log(this.item+" ( " +this.mf +" times ) ") ;
+    console.log('a freq: ' + this.item+" ( " +this.mf +" times ) ") ;
   }
   ngOnInit() {
   }
+public getDistance(latitude1: number, longitude1: number, latitude2:number, longitude2: number){
+  var distance: number;
+  var distanceX: number;
+  var distanceY: number;
+  distanceX = latitude1 - latitude2;
+  distanceY = longitude1 - longitude2;
+  distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
+  console.log('distance: ' + distance);
+  return distance;
+}
+
 
   public getJSON(tag) {
     
@@ -103,11 +121,11 @@ this.arr1 = array;
       
       if (tag == 'address') {
         this.address = this.allDataPerUser.address;
-        console.log(this.address);
+        
         return ('address');
       }
       else if (tag == 'addresses') {
-        this.addresses = JSON.stringify(this.allDataPerUser.address_history);
+        this.addresses =this.allDataPerUser.address_history;
         this.setAddresses(this.addresses);
         return ('address');
       }
