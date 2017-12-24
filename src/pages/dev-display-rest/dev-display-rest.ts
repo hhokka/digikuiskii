@@ -8,6 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { FireparserProvider } from '../../providers/fireparser/fireparser'
+import * as firebase from 'firebase';
 /**
  * Generated class for the DevDisplayRestPage page.
  *
@@ -35,33 +36,29 @@ export class DevDisplayRestPage {
   }
   toggleGroup(group) {
     if (this.isGroupShown(group)) {
-        this.shownGroup = null;
+      this.shownGroup = null;
     } else {
-        this.shownGroup = group;
+      this.shownGroup = group;
     }
-};
-isGroupShown(group) {
+  };
+  isGroupShown(group) {
     return this.shownGroup === group;
-};
+  };
   getUsers() {
     this.restProvider.getRemoteData()
-    .then(data => {
-      this.printData = data;
-      this.printData = JSON.parse(this.printData._body);
-     });
-  }
+      .then(data => {
+        this.printData = data;
+        this.printData = JSON.parse(this.printData._body);
+        console.log('printData: ' + JSON.stringify(this.printData[0]));
+
+      });
+  };
+
+  /* Inputs jobs' coords and calculates distance to current pos. */
+getDistance(x,y){
+ return this.fireparserProvider.getDistance(x,y);
+}
   ionViewDidLoad() {
     console.log('ionViewDidLoad DevDisplayRestPage');
-  }
-
-  diseases = [
-    { title: "Type 1 Diabetes", description: "Type 1 diabetes is an autoimmune disease in which the body’s immune system attacks and destroys the beta cells in the pancreas that make insulin." },
-    { title: "Multiple Sclerosis", description: "Multiple sclerosis (MS) is an autoimmune disease in which the body's immune system mistakenly attacks myelin, the fatty substance that surrounds and protects the nerve fibers in the central nervous system." },
-    { title: "Crohn's & Colitis", description: "Crohn's disease and ulcerative colitis (UC), both also known as inflammatory bowel diseases (IBD), are autoimmune diseases in which the body's immune system attacks the intestines." },
-    { title: "Lupus", description: "Systemic lupus erythematosus (lupus) is a chronic, systemic autoimmune disease which can damage any part of the body, including the heart, joints, skin, lungs, blood vessels, liver, kidneys and nervous system." },
-    { title: "Rheumatoid Arthritis", description: "Rheumatoid arthritis (RA) is an autoimmune disease in which the body's immune system mistakenly begins to attack its own tissues, primarily the synovium, the membrane that lines the joints." }
-  ];
-
+  };
 }
-
-// SOLVE BREAKING JSON -> NG-REPEAT. PROBABLY HAVE TO STRIP AND CLEAN JSON OBJECT.

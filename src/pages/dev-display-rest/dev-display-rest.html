@@ -14,7 +14,6 @@
   </ion-header>
 
 <ion-content padding class="front">
-  
         <ion-list >
             <ion-item  *ngFor="let entry of printData; let i=index" text-wrap (click)="toggleGroup(i)" [ngClass]="{active: isGroupShown(i)}">
               <h3  [className]="isGroupShown(i) ? 'selected' : 'not-selected'">{{entry['tyotehtava']}}
@@ -22,6 +21,9 @@
               <div *ngIf="isGroupShown(i)">{{entry['organisaatio']}}<br>
               {{entry['osoite']}}<br>
             <a href="{{entry['linkki']}}">Linkki</a> </div>
+            <h3>Latitude: {{entry.x}}<br>
+              Longitude: {{entry.y}}<br>
+            Distance: {{this.getDistance(entry.x, entry.y)}}</h3>
             </ion-item>
           </ion-list>
 </ion-content>
