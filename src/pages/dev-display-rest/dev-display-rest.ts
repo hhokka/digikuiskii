@@ -44,7 +44,7 @@ export class DevDisplayRestPage {
   isGroupShown(group) {
     return this.shownGroup === group;
   };
-  getUsers() {
+  /* getUsers() {
     this.restProvider.getRemoteData()
       .then(data => {
         this.printData = data;
@@ -53,12 +53,45 @@ export class DevDisplayRestPage {
 
       });
   };
-
+ */
   /* Inputs jobs' coords and calculates distance to current pos. */
-getDistance(x,y){
- return this.fireparserProvider.getDistance(x,y);
-}
+  getDistance(x, y) {
+    return this.fireparserProvider.getDistance(x, y);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad DevDisplayRestPage');
   };
+  getUsers() {
+
+  this.restProvider.getRemoteData()
+    .then(data => {
+      this.printData = data;
+      this.printData = JSON.parse(this.printData._body);
+      this.printData[0].distance = this.getDistance(
+        this.printData[0].x, this.printData[0].y);
+      console.log('printData: ' + JSON.stringify(this.printData[0]));
+
+    });
+
+    
+};
+getUserPosition() {
+  this.options = {
+    enableHighAccuracy: true
+  };
+
+  this.geolocation.getCurrentPosition(this.options).then((pos: Geoposition) => {
+
+    this.currentPos = pos;
+    this.latitude = pos.coords.latitude;
+    this.longitude = pos.coords.longitude;
+    this.timestamp = pos.timestamp;
+    this.speed = pos.coords.speed;
+    //console.log(pos);
+
+  }, (err: PositionError) => {
+    console.log("error : " + err.message);
+  });
 }
+}
+

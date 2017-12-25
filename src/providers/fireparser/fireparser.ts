@@ -37,8 +37,10 @@ export class FireparserProvider {
   m = 0;
   item;
   setLatitude(latitude) {
+    
     this.latitude = latitude;
- }
+    
+  }
 
   setLongitude(longitude) {
     this.longitude = longitude;
@@ -46,6 +48,7 @@ export class FireparserProvider {
   }
 
   public getLatitude() {
+    this.getJSON('latitude');
     return this.latitude;
   }
 
@@ -114,9 +117,13 @@ export class FireparserProvider {
   }
   ngOnInit() {
   }
+
+  /* Calculates distace using input and user's location. Quick calculation, approximates on xy-plane. */
+
   public getDistance(latitude1: number, longitude1: number) {
-this.getJSON('latitude');
-this.getJSON('longitude');
+    
+    this.getJSON('latitude');
+    this.getJSON('longitude');
     var distance: number;
     var distanceX: number;
     var distanceY: number;
@@ -124,9 +131,9 @@ this.getJSON('longitude');
     distanceY = longitude1 - this.getLongitude();
     distance = Math.sqrt((distanceX * distanceX) + (distanceY * distanceY));
     console.log('latitude_____: ' + this.getLatitude());
-    
+
     console.log('longitude_____: ' + this.getLongitude());
-    
+
     console.log('distance_____: ' + distance);
     return distance;
   }
@@ -149,6 +156,7 @@ this.getJSON('longitude');
       }
       else if (tag == 'latitude') {
         this.setLatitude(this.allDataPerUser.latitude);
+        console.log(this.latitude);
         return this.allDataPerUser.latitude;
       }
       else if (tag == 'longitude') {
