@@ -1,3 +1,7 @@
+---
+typora-copy-images-to: readme_files
+---
+
 # Digikuiskii
 
 Mobiiliapplikaatio Digikuiskii-projektia varten.
@@ -6,7 +10,7 @@ Mobiiliapplikaatio Digikuiskii-projektia varten.
 
 ##### Digikuiskii (aloitussivu)
 
-![etusivu](C:\ionicproject\conFusion\readme_files\etusivu.png)
+![etusivu](\readme_files\etusivu.png)
 
 
 
