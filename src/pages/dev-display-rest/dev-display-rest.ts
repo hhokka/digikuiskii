@@ -86,28 +86,28 @@ export class DevDisplayRestPage {
     if (selector == 'aidinkieli') {
       this.printData.sort(function (a, b) {
         if (a.tag == 1) return -1;
-        if (a.tag > b.tag) return 1;
+        if (a.tag != 1) return 1;
         return 0;
       })
     }
     if (selector == 'liikunta') {
       this.printData.sort(function (a, b) {
         if (a.tag == 2) return -1;
-        if (a.tag > b.tag) return 1;
+        if (a.tag != 2) return 1;
         return 0;
       })
     }
     if (selector == 'musiikki') {
       this.printData.sort(function (a, b) {
         if (a.tag == 3) return -1;
-        if (a.tag > b.tag) return 1;
+        if (a.tag != 3) return 1;
         return 0;
       })
     }
     if (selector == 'biologia') {
       this.printData.sort(function (a, b) {
         if (a.tag == 4) return -1;
-        if (a.tag > b.tag) return 1;
+        if (a.tag != 4) return 1;
         return 0;
       })
     }
