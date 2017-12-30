@@ -1,5 +1,5 @@
 ---
-typora-copy-images-to: readme_files
+
 ---
 
 # Digikuiskii
@@ -10,7 +10,9 @@ Mobiiliapplikaatio Digikuiskii-projektia varten.
 
 ##### Digikuiskii (aloitussivu)
 
-![etusivu](\readme_files\etusivu.png)
+![etusivu](readme_files/etusivu.png)
+
+![etusivu](C:\ionicproject\conFusion\readme_files\etusivu.png)
 
 
 
@@ -167,3 +169,4 @@ This project is licensed under the SmartLab Pseudoreal License - see the [LICENS
 
 ## Muuta
 
+Yh
