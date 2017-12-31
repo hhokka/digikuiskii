@@ -1,14 +1,16 @@
----
-
----
-
 # Digikuiskii
 
 Mobiiliapplikaatio Digikuiskii-projektia varten.
 
+
+
 ## Applikaatio sivuittain
 
 ##### Digikuiskii (aloitussivu)
+
+Etusivu, jolla ei ole toiminnallisuutta.
+
+
 
 ![tusivu](readme_files/etusivu.png)
 
@@ -18,39 +20,81 @@ Mobiiliapplikaatio Digikuiskii-projektia varten.
 
 ##### Päävalikko
 
+Päävalikko, jolla navigoidaan sivujen välillä.
+
+
+
 ![kaikki-sivut](readme_files\kaikki-sivut.png)
+
+
 
 ##### Map (sijainti kartalla)
 
-![location](C:\ionicproject\conFusion\readme_files\location.png)
+Näyttää kartan sekä käyttäjän sijainnin sillä.
+
+
+
+![location](readme_files\location.png)
 
 
 
 ##### Location (devaamiseen)
 
-![gps](C:\ionicproject\conFusion\readme_files\gps.png)
+Sivu, jota voi käyttää devaamiseen. Tällä hetkellä näyttää käyttäjän sijainnin koordinaatit, osoitteen sekä osoitehistorian ('Addresses').
+
+
+
+![gps](readme_files\gps.png)
+
+
 
 ##### Firebase (tietokannan manipulointi devaamisessa)
 
-![firebase-manipulation](C:\ionicproject\conFusion\readme_files\firebase-manipulation.png)
+Sivu, jota voi käyttää Firebasen tietokannan muokkaamiseen devaamisvaiheessa.
+
+
+
+![firebase-manipulation](readme_files\firebase-manipulation.png)
+
+
 
 ##### Login (rekisteröinti, kirjautuminen, salasanan resetointi)
 
-![login](C:\ionicproject\conFusion\readme_files\login.png)
+Sivu, jolla uusi käyttäjä rekisteröityy Firebasen Autentikointiin ('create a new account'). Rekisteröitymisen jälkeen käyttäjä kirjautuu sisään ('Email', 'Password', 'login'). Jos salasana on päässyt unohtumaan, 'i forgot my password' resetoi salasanan sähköpostin avulla.
+
+
+
+![login](readme_files\login.png)
 
 
 
 ##### User Details (käyttäjän tiedot)
 
-![user-details](C:\ionicproject\conFusion\readme_files\user-details.png)
+Käyttäjän preferenssit, kiinnostuksen kohteet, kotikunta. Tätä on tarkoitus laajentaa.
+
+
+
+![user-details](readme_files\user-details.png)
+
+
 
 ##### Työpaikat (kysyy ensin järjestysperustetta)
 
-![tyopaikat-alert](C:\ionicproject\conFusion\readme_files\tyopaikat-alert.png)
+Alert kysyy datan järjestämisperustetta, esim. 'Etäisyys'.
+
+
+
+![tyopaikat-alert](readme_files\tyopaikat-alert.png)
+
+
 
 ##### Työpaikat (järjestettynä alert-valinnan mukaan)
 
-![tyopaikat-sorted](C:\ionicproject\conFusion\readme_files\tyopaikat-sorted.png)
+Sivu näyttää REST-dataa eri apien kautta noudettuna. Dataa voi järjestää edellisen kohdan Alertin avulla. Tässä data on Vantaan avoimia työpaikkoja järjestettynä käyttäjän etäisyyden perusteella 'Distance'.
+
+
+
+![tyopaikat-sorted](readme_files\tyopaikat-sorted.png)
 
 
 
@@ -62,7 +106,9 @@ Firebase on Googlen Back End -pilvipalvelu. Digikuiskiissa on käytetty kahta se
 
 Alla näkymä autentikoinnista. Luotuna on yksi käyttäjä, hans.hokka@gmail.com.  'Login'-sivu on suoraan tähän yhteydessä.
 
-![firebase-auth](C:\ionicproject\conFusion\readme_files\firebase-auth.png)
+
+
+![firebase-auth](readme_files\firebase-auth.png)
 
 
 
@@ -70,13 +116,13 @@ Seuraavana näkymä tietokannasta. Tietokannan nimi on 'smartlab-digikuiskii'. S
 
 Tietokanta on NoSql-tyyppiä. *Käytännössä sitä voi pitää JSON-objektina.*
 
-![firebase-database](C:\ionicproject\conFusion\readme_files\firebase-database.png)
+
+
+![firebase-database](readme_files\firebase-database.png)
 
 
 
 Osoite Firebasen konsoliin: https://console.firebase.google.com/project/smartlab-digikuiskii/overview
-
-
 
 Osoitteeseen smartlabvantaa@gmail.com on lähetetty kutsu, jolla pääsee digikuiskiin owneriksi Firebaseen.
 
@@ -110,12 +156,10 @@ Next, update your PATH to include the `tools/` and `platform-tools/` folder in t
 
 B) Asenna loput tarvittavat:
 1. [Git for Windows](http://git-scm.com/download/win)
-
-  2. [Node.js](http://nodejs.org/)
-
-  3. [Apache Cordova](http://cordova.apache.org/)
+2. [Node.js](http://nodejs.org/)
+3. Apache Cordova
 ```
-  npm install -g cordova
+npm install -g cordova
 ```
     4. [Visual Studio Code](https://code.visualstudio.com/)
 
@@ -143,6 +187,10 @@ F) Käynnistä IonicLab:
 ionic serve -l
 ```
 
+G) Asenna / emuloi uusin build: [/platforms/android/build/outputs/apk/android-debug.apk](/platforms/android/build/outputs/apk/android-debug.apk)
+
+
+
 ## Stack
 
 IOnic
@@ -159,14 +207,9 @@ Firebase
 
 ## Tekijät
 
-* **Hans Hokka** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Hans Hokka** - *Initial work*
 
 ## License
 
-This project is licensed under the SmartLab Pseudoreal License - see the [LICENSE.md](LICENSE.md) file for details
-
 ## Muuta
 
-Yh
