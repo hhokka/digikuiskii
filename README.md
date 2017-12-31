@@ -1,3 +1,9 @@
+---
+
+typora-copy-images-to: readme_files
+typora-root-url: ./
+---
+
 # Digikuiskii
 
 Mobiiliapplikaatio Digikuiskii-projektia varten.
@@ -90,7 +96,7 @@ Alert kysyy datan järjestämisperustetta, esim. 'Etäisyys'.
 
 ##### Työpaikat (järjestettynä alert-valinnan mukaan)
 
-Sivu näyttää REST-dataa eri apien kautta noudettuna. Dataa voi järjestää edellisen kohdan Alertin avulla. Tässä data on Vantaan avoimia työpaikkoja järjestettynä käyttäjän etäisyyden perusteella 'Distance'.
+Sivu näyttää REST-dataa eri apien kautta noudettuna. Dataa voi järjestää edellisen kohdan Alertin avulla. Tässä data on Vantaan avoimia työpaikkoja, järjestettynä käyttäjän etäisyyden perusteella ('Distance').
 
 
 
@@ -189,19 +195,312 @@ ionic serve -l
 
 G) Asenna / emuloi uusin build: [/platforms/android/build/outputs/apk/android-debug.apk](/platforms/android/build/outputs/apk/android-debug.apk)
 
+## Koodi
 
 
-## Stack
 
-IOnic
+![tree-app](/readme_files/tree-app.png)
 
-Cordova
+app.components.ts
 
-Sass
+Import-blokkiin lisätään uudet sivut, esim. 'UserdetailsPage'.
 
-TypeScript
+```typescript
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { MapPage } from '../pages/map/map';
+import { DbManipulatePage } from '../pages/dbmanipulate/dbmanipulate';
+/*import { MenuPage } from '../pages/menu/menu';*/
+import { FrontPage } from '../pages/front/front';
+import { GpsPage } from '../pages/gps/gps';
+import { UserdetailsPage } from '../pages/userdetails/userdetails';
+import { DevDisplayRestPage } from '../pages/dev-display-rest/dev-display-rest';
+import { LoginPage } from '../pages/login/login';
+import { Firebase } from '@ionic-native/firebase';
+import firebase from 'firebase';
+import { FIREBASE_CREDENTIALS } from '../shared/credentials';
 
-Firebase
+```
+Seuraavaa blokkia ei tarvitse muuttaa tai ylipäätään huomioida:
+
+```typescript
+@Component({
+  templateUrl: 'app.html'
+})
+
+export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+  rootPage: any;
+
+  pages: Array<{title: string, icon: string, component: any}>;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    this.initializeApp();
+    firebase.initializeApp({
+    	apiKey: "AIzaSyBqB9en9SLmoOrUKKlhTvRTw6kyLAkJKBM",
+    	authDomain: "smartlab-digikuiskii.firebaseapp.com",
+    	databaseURL: "https://smartlab-digikuiskii.firebaseio.com",
+    	storageBucket: "smartlab-digikuiskii.appspot.com",
+    	messagingSenderId: "937628060376"
+    });
+// used for an example of ngFor and navigation
+```
+
+Tähän arrayhin lisätään uudet sivut, esim. User Details:
+```typescript
+    this.pages = [
+      { title: 'Digikuiskii', icon: 'home', component: FrontPage},
+      { title: 'Map', icon: 'map', component: MapPage },
+      { title: 'Location', icon: 'compass', component: GpsPage},
+      { title: 'Firebase', icon: 'cloud-upload', component: DbManipulatePage},
+      { title: 'Login', icon: 'key', component: LoginPage},
+      { title: 'User Details', icon: 'person', component: UserdetailsPage},
+      { title: 'Työpaikat', icon: 'logo-euro', component: DevDisplayRestPage}   ];
+
+
+```
+Loput voi jättää huomiotta
+```
+       const unsubscribe = firebase.auth().onAuthStateChanged( user => {
+        if (!user) {
+          this.rootPage = LoginPage;
+          unsubscribe();
+        } else { 
+          this.rootPage = FrontPage;
+          unsubscribe();
+        }
+      });
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
+  }
+}
+```
+
+
+
+
+app.module.ts
+
+Oleelliset osat:
+```typescript
+import { UserdetailsPage } from '../pages/userdetails/userdetails';
+```
+
+```typescript
+
+@NgModule({
+  declarations: [
+    MyApp,
+    MapPage,
+	DbManipulatePage,
+	FrontPage,
+	GpsPage,
+	LoginPage,
+	UserdetailsPage,
+	DevDisplayRestPage,
+	ExpandableComponent
+  ],
+
+  imports: [
+  	BrowserModule,
+  	IonicModule.forRoot(MyApp),
+  	HttpModule,
+  	AngularFireDatabaseModule
+  ],
+
+  bootstrap: [IonicApp],
+
+  entryComponents: [
+	MyApp,
+	MapPage,
+	DbManipulatePage,
+	FrontPage,
+	GpsPage,
+	LoginPage,
+	UserdetailsPage,
+	DevDisplayRestPage
+```
+
+
+
+
+
+Pages
+
+Esimerkkinä userdetails.
+
+Sivu koostuu neljästä pulikasta, joista kaksi on olennaisia: userdetails.html, userdetails.ts
+
+
+
+
+
+![tree-userdetails](/readme_files/tree-userdetails.png)
+
+
+
+Userdetails.html
+
+```html
+<ion-header>
+    <ion-navbar color="primary">
+      
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+
+      <ion-title>User Details</ion-title>
+
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+<ion-list>
+  <ion-item>
+    <ion-label>Urheilu</ion-label>
+    <ion-checkbox checked="false" formControlName="urheilu"></ion-checkbox>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Musiikki</ion-label>
+      <ion-checkbox checked="false" formControlName="musiikki"></ion-checkbox
+  </ion-item>
+  <ion-item>
+      <ion-label>Elokuvat</ion-label>
+      <ion-checkbox checked="false" formControlName="elokuvat"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>TVohjelmat</ion-label>
+      <ion-checkbox checked="false" formControlName='tvohjelmat'></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Kirjat</ion-label>
+    <ion-checkbox checked="false" formControlName='kirjat'></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Pelit</ion-label>
+    <ion-checkbox checked="false" formControlName='pelit'></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+      <ion-label> Kotikuntasi</ion-label>
+      <ion-select formControlName="kotikunta">
+        <ion-option>Helsinki</ion-option>
+        <ion-option>Espoo</ion-option>
+        <ion-option>Vantaa</ion-option>
+        <ion-option>Kauniainen</ion-option>
+      </ion-select>
+  </ion-item>
+</ion-list>
+    <button ion-button block type="submit">
+      Lähetä tiedot
+    </button>
+  </form>
+</ion-content>
+```
+
+Userdetails.ts
+
+Importit, huomioi firebase
+
+
+
+```typescript
+import { Component } from '@angular/core';
+import { IonicPage, 
+  NavController, 
+  Loading,
+  LoadingController,
+  AlertController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthData } from '../../providers/auth/auth';
+import { EmailValidator } from '../../validators/email';
+import { MapPage } from '../map/map';
+import { LoginPage } from '../login/login';
+import * as firebase from 'firebase';
+```
+@Dekoraattorit, vertaa app.module
+```typescript
+@IonicPage({
+  name: 'userdetails'
+})
+
+@Component({
+  selector: 'page-userdetails',
+  templateUrl: 'userdetails.html',
+})
+
+export class UserdetailsPage {
+```
+  Muuttujat, huomaa tyypitys
+  ```typescript
+  public first: boolean;
+  public signupForm: FormGroup;
+  public loading: Loading;
+  ```
+Konstruktori, tähän laitetut tulevat käyttöön koodissa
+```typescript
+  constructor(
+  	 public navCtrl: NavController,
+     public authProvider: AuthData,
+     public formBuilder: FormBuilder, 
+     public loadingCtrl: LoadingController,
+     public alertCtrl: AlertController
+
+  ) {
+```
+Ks. Angular formBuilder
+```typescript
+    
+       this.signupForm = formBuilder.group({
+         urheilu: [false],
+         musiikki: [false],
+         tvohjelmat: [false],
+         elokuvat: [false],
+         pelit: [false],
+         kirjat: [false],
+         kotikunta: ['']
+       });
+     }
+```
+Funktio, lukee signupFormin ja kutsuu sillä toista funktiota
+```typescript
+signupUser(){
+  let data: string;
+  data = this.signupForm.value;
+  console.log(this.signupForm.value);
+  this.putInfoToFirebase(data);
+}
+```
+Funktio, tuuppaa dataa Firebaseen
+```typescript
+putInfoToFirebase(userDetailedInfo: string): void {
+  const personRef: firebase.database.Reference = firebase.database().ref('/' + firebase.auth().currentUser.uid);
+     personRef.set({
+       userDetailedInfo
+     })
+	}
+}
+```
 
 
 
@@ -209,7 +508,5 @@ Firebase
 
 * **Hans Hokka** - *Initial work*
 
-## License
 
-## Muuta
 
