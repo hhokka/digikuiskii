@@ -10,15 +10,15 @@ Mobiiliapplikaatio Digikuiskii-projektia varten.
 
 ##### Digikuiskii (aloitussivu)
 
-![etusivu](readme_files/etusivu.png)
+![tusivu](readme_files/etusivu.png)
 
-![etusivu](C:\ionicproject\conFusion\readme_files\etusivu.png)
+
 
 
 
 ##### Päävalikko
 
-![kaikki-sivut](C:\ionicproject\conFusion\readme_files\kaikki-sivut.png)
+![kaikki-sivut](readme_files\kaikki-sivut.png)
 
 ##### Map (sijainti kartalla)
 
