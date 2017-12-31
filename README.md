@@ -12,7 +12,7 @@ Etusivu, jolla ei ole toiminnallisuutta.
 
 
 
-![tusivu](readme_files/etusivu.png)
+![Etusivu](readme_files/etusivu.png)
 
 
 
@@ -34,7 +34,7 @@ Näyttää kartan sekä käyttäjän sijainnin sillä.
 
 
 
-![location](readme_files\location.png)
+![location](readme_files/location.png)
 
 
 
@@ -44,7 +44,7 @@ Sivu, jota voi käyttää devaamiseen. Tällä hetkellä näyttää käyttäjän
 
 
 
-![gps](readme_files\gps.png)
+![gps](readme_files/gps.png)
 
 
 
@@ -54,7 +54,7 @@ Sivu, jota voi käyttää Firebasen tietokannan muokkaamiseen devaamisvaiheessa.
 
 
 
-![firebase-manipulation](readme_files\firebase-manipulation.png)
+![firebase-manipulation](readme_files/firebase-manipulation.png)
 
 
 
@@ -64,7 +64,7 @@ Sivu, jolla uusi käyttäjä rekisteröityy Firebasen Autentikointiin ('create a
 
 
 
-![login](readme_files\login.png)
+![login](readme_files/login.png)
 
 
 
@@ -74,7 +74,7 @@ Käyttäjän preferenssit, kiinnostuksen kohteet, kotikunta. Tätä on tarkoitus
 
 
 
-![user-details](readme_files\user-details.png)
+![user-details](readme_files/user-details.png)
 
 
 
@@ -84,7 +84,7 @@ Alert kysyy datan järjestämisperustetta, esim. 'Etäisyys'.
 
 
 
-![tyopaikat-alert](readme_files\tyopaikat-alert.png)
+![tyopaikat-alert](readme_files/tyopaikat-alert.png)
 
 
 
@@ -94,7 +94,7 @@ Sivu näyttää REST-dataa eri apien kautta noudettuna. Dataa voi järjestää e
 
 
 
-![tyopaikat-sorted](readme_files\tyopaikat-sorted.png)
+![tyopaikat-sorted](readme_files/tyopaikat-sorted.png)
 
 
 
@@ -108,7 +108,7 @@ Alla näkymä autentikoinnista. Luotuna on yksi käyttäjä, hans.hokka@gmail.co
 
 
 
-![firebase-auth](readme_files\firebase-auth.png)
+![firebase-auth](readme_files/firebase-auth.png)
 
 
 
@@ -118,7 +118,7 @@ Tietokanta on NoSql-tyyppiä. *Käytännössä sitä voi pitää JSON-objektina.
 
 
 
-![firebase-database](readme_files\firebase-database.png)
+![firebase-database](readme_files/firebase-database.png)
 
 
 
