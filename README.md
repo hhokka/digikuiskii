@@ -167,23 +167,21 @@ B) Asenna loput tarvittavat:
 ```
 npm install -g cordova
 ```
-    4. [Visual Studio Code](https://code.visualstudio.com/)
+4. [Visual Studio Code](https://code.visualstudio.com/)
 
-    5. Ionic
+5. Ionic
 
- ```
+```
 npm install -g ionic
- ```
-
-
-   ```
+```
+```
 ionic cordova platform add android
-   ```
-   D) Testaa asennus
-   ```
+```
+D) Testaa asennus
+```
 ionic cordova build android
 ionic cordova emulate android
-   ```
+```
 
 E) Kloonaa repo https://github.com/City-of-Vantaa-SmartLab/digikuiskii.git
 
@@ -193,7 +191,7 @@ F) Käynnistä IonicLab:
 ionic serve -l
 ```
 
-G) Asenna / emuloi uusin build: [/platforms/android/build/outputs/apk/android-debug.apk](/platforms/android/build/outputs/apk/android-debug.apk)
+G) Asenna / emuloi uusin build: [android-debug.apk](readme_files/android-debug.apk)
 
 ## Koodi
 
