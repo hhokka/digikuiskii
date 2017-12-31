@@ -24,7 +24,7 @@ Päävalikko, jolla navigoidaan sivujen välillä.
 
 
 
-![kaikki-sivut](readme_files\kaikki-sivut.png)
+![kaikki-sivut](readme_files/kaikki-sivut.png)
 
 
 
