@@ -1,9 +1,3 @@
----
-
-typora-copy-images-to: readme_files
-typora-root-url: ./
----
-
 # Digikuiskii
 
 Mobiiliapplikaatio Digikuiskii-projektia varten.
@@ -199,7 +193,9 @@ G) Asenna / emuloi uusin build: [android-debug.apk](readme_files/android-debug.a
 
 ![tree-app](/readme_files/tree-app.png)
 
-app.components.ts
+
+
+##### app.components.ts
 
 Import-blokkiin lisätään uudet sivut, esim. 'UserdetailsPage'.
 
@@ -260,7 +256,7 @@ Tähän arrayhin lisätään uudet sivut, esim. User Details:
 
 ```
 Loput voi jättää huomiotta
-```
+```typescript
        const unsubscribe = firebase.auth().onAuthStateChanged( user => {
         if (!user) {
           this.rootPage = LoginPage;
@@ -291,8 +287,7 @@ Loput voi jättää huomiotta
 
 
 
-
-app.module.ts
+##### app.module.ts
 
 Oleelliset osat:
 ```typescript
@@ -338,11 +333,11 @@ import { UserdetailsPage } from '../pages/userdetails/userdetails';
 
 
 
-Pages
+##### Pages
 
 Esimerkkinä userdetails.
 
-Sivu koostuu neljästä pulikasta, joista kaksi on olennaisia: userdetails.html, userdetails.ts
+Sivu koostuu neljästä pulikasta, joista kaksi on olennaisia: userdetails.html, userdetails.ts.
 
 
 
@@ -352,7 +347,7 @@ Sivu koostuu neljästä pulikasta, joista kaksi on olennaisia: userdetails.html,
 
 
 
-Userdetails.html
+##### userdetails.html
 
 ```html
 <ion-header>
@@ -416,11 +411,11 @@ Userdetails.html
 </ion-content>
 ```
 
-Userdetails.ts
+
+
+##### userdetails.ts
 
 Importit, huomioi firebase
-
-
 
 ```typescript
 import { Component } from '@angular/core';
@@ -436,7 +431,7 @@ import { MapPage } from '../map/map';
 import { LoginPage } from '../login/login';
 import * as firebase from 'firebase';
 ```
-@Dekoraattorit, vertaa app.module
+@Dekoraattorit, vertaa app.components.ts
 ```typescript
 @IonicPage({
   name: 'userdetails'
